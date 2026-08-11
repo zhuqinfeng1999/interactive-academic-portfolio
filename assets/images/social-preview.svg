@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs><radialGradient id="g"><stop stop-color="#174d55"/><stop offset="1" stop-color="#071018"/></radialGradient><pattern id="p" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0v44" fill="none" stroke="#85f6ff" stroke-opacity=".07"/></pattern></defs>
+  <rect width="1200" height="630" fill="#071018"/><rect width="1200" height="630" fill="url(#g)" opacity=".6"/><rect width="1200" height="630" fill="url(#p)"/>
+  <g fill="none" stroke="#79f3ee"><path d="M740 470 920 180l180 290-180 90Z" opacity=".35"/><ellipse cx="920" cy="330" rx="160" ry="54" opacity=".24"/><circle cx="920" cy="330" r="84" opacity=".18"/><path d="m780 420 140-90 130 102" opacity=".45"/></g>
+  <g fill="#79f3ee"><circle cx="920" cy="330" r="9"/><circle cx="780" cy="420" r="5"/><circle cx="1050" cy="432" r="5"/></g>
+  <text x="78" y="112" fill="#79f3ee" font-family="monospace" font-size="18" letter-spacing="5">SPATIALFOLIO · RESEARCH PORTFOLIO</text>
+  <text x="76" y="300" fill="#f4f6f3" font-family="Georgia,serif" font-size="92">Your Name</text>
+  <text x="80" y="366" fill="#a9b9bb" font-family="Arial,sans-serif" font-size="28">Researcher · Scientist · Builder</text>
+  <text x="80" y="515" fill="#79f3ee" font-family="monospace" font-size="16" letter-spacing="3">AI · SCIENCE · DISCOVERY</text>
+</svg>

@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If Spatialfolio supports your academic website or research communication, please cite the repository and retain the required footer credit."
+title: "Spatialfolio: Interactive Academic Portfolio Template"
+type: software
+authors:
+  - family-names: Zhu
+    given-names: Qinfeng
+url: "https://github.com/zhuqinfeng1999/interactive-academic-portfolio"
+repository-code: "https://github.com/zhuqinfeng1999/interactive-academic-portfolio"
+license: "LicenseRef-SAL-1.0"
+version: 1.0.0
+date-released: 2026-08-11

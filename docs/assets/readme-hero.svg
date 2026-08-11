@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 560">
+  <defs><radialGradient id="g" cx="72%" cy="44%"><stop stop-color="#174b54"/><stop offset="1" stop-color="#061018"/></radialGradient><pattern id="p" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0v48" fill="none" stroke="#85f6ff" stroke-opacity=".065"/></pattern></defs>
+  <rect width="1400" height="560" rx="28" fill="url(#g)"/><rect width="1400" height="560" rx="28" fill="url(#p)"/>
+  <text x="70" y="82" fill="#85f6ff" font-family="monospace" font-size="15" letter-spacing="5">INTERACTIVE ACADEMIC PORTFOLIO · ZERO BUILD</text>
+  <text x="68" y="260" fill="#f4f6f3" font-family="Georgia,serif" font-size="108">Spatialfolio</text>
+  <text x="74" y="322" fill="#a5b8ba" font-family="Arial,sans-serif" font-size="26">A cinematic research portfolio that explains a system — not just a CV.</text>
+  <g transform="translate(970 270)" fill="none"><path d="M-240 150 0-150l260 300L0 220Z" stroke="#85f6ff" opacity=".25"/><ellipse rx="215" ry="70" stroke="#85f6ff" opacity=".35"/><circle r="110" stroke="#9a8cff" opacity=".4"/><path d="M-175 105C-80-85 85-65 190 75" stroke="#85f6ff" stroke-width="4"/></g>
+  <g fill="#85f6ff"><circle cx="795" cy="375" r="7"/><circle cx="970" cy="205" r="8"/><circle cx="1160" cy="345" r="7"/></g><circle cx="1090" cy="255" r="6" fill="#ff9d66"/><circle cx="888" cy="275" r="6" fill="#9a8cff"/>
+  <text x="72" y="474" fill="#85f6ff" font-family="monospace" font-size="14" letter-spacing="3">CANVAS SCENES · RESEARCH ATLAS · PUBLICATION SEARCH · PROJECT STORIES</text>
+</svg>

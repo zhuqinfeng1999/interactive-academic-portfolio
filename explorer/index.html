@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#030508">
+  <meta name="description" content="Explore four responsive research visualizations inside one spatial scene.">
+  <title>Interactive Research Explorer — Your Name</title><link rel="canonical" href="https://yourusername.github.io/explorer/"><link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/cosmic.css?v=1"><link rel="stylesheet" href="/assets/css/subpages.css?v=1">
+</head>
+<body class="explorer-page">
+  <a class="skip-link" href="#explorer-title">Skip to description</a>
+  <main class="explorer-shell">
+    <canvas class="explorer-canvas" data-spatial-world data-scene="explorer" data-mode="pointcloud" aria-hidden="true"></canvas><div class="explorer-vignette" aria-hidden="true"></div>
+    <div class="explorer-topbar"><a class="explorer-back" href="/">← Back to portfolio</a><span class="explorer-identity"><i></i>Your Name · Interactive Research Explorer</span></div>
+    <section class="explorer-copy" aria-labelledby="explorer-title"><p class="eyebrow"><span></span>Interactive research field</p><h1 id="explorer-title">One scene,<br><em>four sensing</em><br>spaces.</h1><p>The included scene is a starting point. Give Codex your research concepts and ask it to redesign these modes for world models, medical imaging, condensed-matter physics or another field.</p></section>
+    <p class="explorer-hint" data-world-interaction>Move pointer · click to query</p>
+    <div class="explorer-controls"><div class="explorer-modes" role="group" aria-label="Research visualization mode"><button class="explorer-mode" data-explorer-mode="aerial" type="button" aria-pressed="false">Earth observation</button><button class="explorer-mode" data-explorer-mode="panoramic" type="button" aria-pressed="false">Spherical perception</button><button class="explorer-mode active" data-explorer-mode="pointcloud" type="button" aria-pressed="true">Spatial intelligence</button><button class="explorer-mode" data-explorer-mode="robotics" type="button" aria-pressed="false">Embodied AI</button></div><div class="explorer-readout" aria-live="polite"><strong data-world-title>Semantic probe</strong><span data-world-detail>Move to reveal local classes · click to expand the neighbourhood</span></div></div>
+    <a class="explorer-template-credit" href="https://github.com/zhuqinfeng1999/interactive-academic-portfolio" target="_blank" rel="noreferrer">Spatialfolio template ↗</a>
+  </main>
+  <script src="/assets/js/spatial-world.js?v=1" defer></script>
+</body>
+</html>

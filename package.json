@@ -1,0 +1,12 @@
+{
+  "name": "spatialfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A cinematic, interactive academic portfolio template for researchers.",
+  "type": "module",
+  "scripts": {
+    "serve": "node scripts/serve.mjs",
+    "validate": "node scripts/validate-site.mjs"
+  },
+  "license": "SEE LICENSE IN LICENSE"
+}

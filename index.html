@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06080c">
+  <meta name="description" content="An interactive academic portfolio for a researcher working across AI, scientific discovery and spatial intelligence.">
+  <meta name="keywords" content="academic portfolio, researcher website, scientific AI, computer vision, interactive research website">
+  <meta name="author" content="Your Name">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourusername.github.io/">
+  <meta property="og:title" content="Your Name — Research Portfolio">
+  <meta property="og:description" content="Research at the intersection of perception, learning and scientific discovery.">
+  <meta property="og:image" content="https://yourusername.github.io/assets/images/social-preview.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Your Name — Research Portfolio</title>
+  <link rel="canonical" href="https://yourusername.github.io/">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/cosmic.css?v=1">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Your Name",
+    "url": "https://yourusername.github.io/",
+    "jobTitle": "Researcher",
+    "affiliation": {"@type": "CollegeOrUniversity", "name": "Your University"},
+    "email": "mailto:hello@example.com",
+    "sameAs": ["https://github.com/yourusername"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="loader" data-loader aria-hidden="true">
+    <div class="loader-top"><span>Your Name</span><span>Research Atlas</span></div>
+    <div class="loader-center"><p data-loader-word>Perceive</p><span>AI · SCIENCE · DISCOVERY</span></div>
+    <div class="loader-count" data-loader-count>000</div>
+    <div class="loader-progress"><i data-loader-progress></i></div>
+  </div>
+  <div class="page-progress" aria-hidden="true"><i data-page-progress></i></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header" data-header>
+    <nav class="nav-pill" aria-label="Primary navigation">
+      <a class="monogram" href="#home" aria-label="Your Name — home"><span>YN</span></a>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <div class="nav-links" data-nav-links>
+        <a class="active" href="#home">Home</a>
+        <a href="/research/">Research Atlas</a>
+        <a href="/publications/">Publications</a>
+        <a href="/projects/">Projects</a>
+        <a href="/explorer/">Explorer</a>
+        <a href="#service">Service</a>
+      </div>
+      <span class="nav-divider nav-divider-end" aria-hidden="true"></span>
+      <button class="command-trigger" data-command-trigger type="button" aria-label="Open site search"><span>Search</span><kbd>⌘K</kbd></button>
+      <a class="nav-contact" href="mailto:hello@example.com">Say hello ↗</a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" data-nav-toggle><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-world" role="img" aria-label="An interactive spatial intelligence scene with four research modes">
+        <canvas data-spatial-world data-scene="hero" data-mode="pointcloud" aria-hidden="true"></canvas>
+      </div>
+      <div class="world-hud world-hud-top"><span><b data-world-status>Urban point cloud</b><small data-world-interaction>Move pointer · click to query</small></span><em>Interactive</em></div>
+      <div class="world-mode-switcher" role="group" aria-label="Homepage visualization mode">
+        <button class="active" data-world-mode="pointcloud" type="button" aria-pressed="true"><i>01</i><span>Point cloud</span></button>
+        <button data-world-mode="aerial" type="button" aria-pressed="false"><i>02</i><span>Earth observation</span></button>
+        <button data-world-mode="panoramic" type="button" aria-pressed="false"><i>03</i><span>360° vision</span></button>
+        <button data-world-mode="robotics" type="button" aria-pressed="false"><i>04</i><span>Embodied AI</span></button>
+      </div>
+      <div class="world-hud world-hud-bottom">
+        <strong data-world-title>Semantic probe</strong>
+        <span data-world-detail>Move to reveal local classes · click to expand the neighbourhood</span>
+        <span class="semantic-legend" aria-label="Semantic class colours"><i class="building"></i>Structure <i class="vegetation"></i>Nature <i class="road"></i>Surface <i class="vehicle"></i>Agent</span>
+      </div>
+      <div class="hero-content shell">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Research portfolio · Your City · 2026</p>
+          <h1 id="hero-title" class="hero-name reveal">Your <em>Name</em><small>Researcher · Scientist · Builder</small></h1>
+          <p class="hero-role reveal">I build systems that help machines understand <span class="role-rotator" data-roles="complex worlds|scientific structure|multimodal evidence|uncertain environments">complex worlds</span>.</p>
+          <p class="hero-intro reveal">I am a researcher at <strong>Your University</strong>, working at the intersection of artificial intelligence, perception and scientific discovery. Replace this paragraph with a concise account of your research question, training and collaborators.</p>
+          <div class="hero-actions reveal">
+            <a class="button button-primary" href="/research/">Explore the atlas <span aria-hidden="true">↗</span></a>
+            <a class="button button-ghost" href="/publications/">Publications <span aria-hidden="true">↗</span></a>
+            <a class="button button-ghost" href="#contact">Start a conversation <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-socials reveal" aria-label="Research profiles">
+            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer"><b>in</b>LinkedIn</a>
+            <a href="https://scholar.google.com/" target="_blank" rel="noreferrer"><b>G</b>Scholar</a>
+            <a href="https://github.com/yourusername" target="_blank" rel="noreferrer"><b>GH</b>GitHub</a>
+            <a href="https://orcid.org/" target="_blank" rel="noreferrer"><b>iD</b>ORCID</a>
+          </div>
+        </div>
+        <div class="availability reveal" aria-label="Availability">
+          <div class="opportunity"><b>NOW</b><p><strong>Research collaborations</strong><br>Open to ambitious, interdisciplinary ideas.</p></div>
+          <div class="opportunity"><b>NEXT</b><p><strong>Career opportunities</strong><br>Describe the roles, locations or timelines you seek.</p></div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#research"><span>Scroll to research</span><i></i></a>
+    </section>
+
+    <div class="home-ticker" aria-label="Research topics"><div class="home-ticker-track">
+      <span>World Models</span><i>✦</i><span>Scientific AI</span><i>✦</i><span>Multimodal Learning</span><i>✦</i><span>3D Perception</span><i>✦</i><span>Reliable Intelligence</span><i>✦</i>
+      <span aria-hidden="true">World Models</span><i aria-hidden="true">✦</i><span aria-hidden="true">Scientific AI</span><i aria-hidden="true">✦</i><span aria-hidden="true">Multimodal Learning</span><i aria-hidden="true">✦</i><span aria-hidden="true">3D Perception</span><i aria-hidden="true">✦</i><span aria-hidden="true">Reliable Intelligence</span><i aria-hidden="true">✦</i>
+    </div></div>
+
+    <section class="section research-overview" id="research" aria-labelledby="research-title">
+      <div class="shell">
+        <header class="section-heading section-heading-light reveal"><div><p class="eyebrow"><span></span>Research atlas</p><h2 id="research-title">One question,<br><em>many sensing spaces.</em></h2></div><div><p>Use these cards to show how your research areas connect rather than presenting them as an unrelated list.</p><a class="section-action section-action-dark" href="/research/">Open the interactive atlas <span>↗</span></a></div></header>
+        <div class="research-grid">
+          <a class="research-card reveal" data-tilt href="/research/#earth-observation"><span class="card-number">01</span><img class="research-visual" src="/assets/images/directions/earth-observation.svg" alt="Orbital sensing around a digital Earth" loading="lazy"><div class="research-copy"><span class="research-tag">Planetary context</span><h3>Earth Observation</h3><p>Learning reliable representations from satellite and aerial measurements.</p></div></a>
+          <a class="research-card reveal" data-tilt href="/research/#spatial-intelligence"><span class="card-number">02</span><img class="research-visual" src="/assets/images/directions/spatial-intelligence.svg" alt="A semantic point-cloud city" loading="lazy"><div class="research-copy"><span class="research-tag">Geometry and action</span><h3>Spatial Intelligence</h3><p>Building models that reason across 3D structure, motion and interaction.</p></div></a>
+          <a class="research-card reveal" data-tilt href="/research/#spherical-perception"><span class="card-number">03</span><img class="research-visual" src="/assets/images/directions/spherical-perception.svg" alt="Signals distributed over a sphere" loading="lazy"><div class="research-copy"><span class="research-tag">Intrinsic geometry</span><h3>Spherical Perception</h3><p>Respecting non-Euclidean observation spaces in panoramic modeling.</p></div></a>
+          <a class="research-card reveal" data-tilt href="/research/#multimodal-learning"><span class="card-number">04</span><img class="research-visual" src="/assets/images/directions/multimodal-learning.svg" alt="Multiple sensing streams converging" loading="lazy"><div class="research-copy"><span class="research-tag">Sensor synergy</span><h3>Multimodal Learning</h3><p>Fusing complementary signals without erasing their distinct structure.</p></div></a>
+          <a class="research-card reveal" data-tilt href="/research/#dense-prediction"><span class="card-number">05</span><img class="research-visual" src="/assets/images/directions/dense-prediction.svg" alt="A scene separated into semantic regions" loading="lazy"><div class="research-copy"><span class="research-tag">Structured outputs</span><h3>Dense Prediction</h3><p>Turning pixels, voxels and points into useful semantic explanations.</p></div></a>
+          <a class="research-card reveal" data-tilt href="/research/#robust-learning"><span class="card-number">06</span><img class="research-visual" src="/assets/images/directions/robust-learning.svg" alt="A family of controlled data transformations" loading="lazy"><div class="research-copy"><span class="research-tag">Beyond the benchmark</span><h3>Robust Learning</h3><p>Designing systems that remain useful under shift, scarcity and noise.</p></div></a>
+          <a class="research-card reveal" data-tilt href="/research/#scientific-ai"><span class="card-number">07</span><img class="research-visual" src="/assets/images/directions/scientific-ai.svg" alt="A neural field over a scientific lattice" loading="lazy"><div class="research-copy"><span class="research-tag">Discovery systems</span><h3>Scientific AI</h3><p>Connecting machine learning with interpretable scientific structure.</p></div></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section publications-section" id="publications" aria-labelledby="publications-title">
+      <div class="shell">
+        <header class="section-heading reveal"><div><p class="eyebrow"><span></span>Selected work</p><h2 id="publications-title">Featured <em>publications.</em></h2></div><div><p>Use full-width visual stories for your most important work, followed by a compact complete record.</p><a class="section-action" href="/publications/">Search all publications <span>↗</span></a></div></header>
+        <div class="featured-publications">
+          <article class="feature-paper feature-paper-wide reveal" data-publication-id="world-models"><figure class="paper-visual"><img class="paper-ambient" src="/assets/images/publications/world-models.svg" alt="" aria-hidden="true" loading="lazy"><img class="paper-artwork" src="/assets/images/publications/world-models.svg" alt="A world model predicting multiple agent futures" loading="lazy"></figure><div class="paper-meta"><span>Example Journal · Lead author</span><time>2026</time></div><h3><a href="/projects/featured-project/">Learning structured world models from sparse multimodal observations.</a></h3><div class="paper-footer"><p class="paper-authors"><strong>Your Name</strong>, Collaborator A, Collaborator B</p><div class="paper-links"><a href="/projects/featured-project/">Project ↗</a><a href="/publications/">BibTeX ↗</a></div></div></article>
+          <article class="feature-paper feature-paper-wide reveal" data-publication-id="sphere-native"><figure class="paper-visual"><img class="paper-ambient" src="/assets/images/publications/sphere-native.svg" alt="" aria-hidden="true" loading="lazy"><img class="paper-artwork" src="/assets/images/publications/sphere-native.svg" alt="A sphere-native representation with geometric paths" loading="lazy"></figure><div class="paper-meta"><span>Conference · Oral</span><time>2026</time></div><h3><a href="/publications/">Sphere-native representation learning for panoramic perception.</a></h3><div class="paper-footer"><p class="paper-authors"><strong>Your Name</strong>, Collaborator C</p><div class="paper-links"><a href="/publications/">Paper ↗</a><span class="status-chip">Oral</span></div></div></article>
+          <article class="feature-paper feature-paper-wide reveal" data-publication-id="medical-ai"><figure class="paper-visual"><img class="paper-ambient" src="/assets/images/publications/medical-ai.svg" alt="" aria-hidden="true" loading="lazy"><img class="paper-artwork" src="/assets/images/publications/medical-ai.svg" alt="Volumetric medical segmentation with uncertainty contours" loading="lazy"></figure><div class="paper-meta"><span>Medical Imaging Journal</span><time>2025</time></div><h3><a href="/projects/medical-ai/">Uncertainty-aware volumetric segmentation with sparse supervision.</a></h3><div class="paper-footer"><p class="paper-authors">Collaborator D, <strong>Your Name</strong>, Collaborator E</p><div class="paper-links"><a href="/projects/medical-ai/">Project ↗</a><a href="/publications/">Code ↗</a></div></div></article>
+          <article class="feature-paper feature-paper-wide reveal" data-publication-id="scientific-discovery"><figure class="paper-visual"><img class="paper-ambient" src="/assets/images/publications/scientific-ai.svg" alt="" aria-hidden="true" loading="lazy"><img class="paper-artwork" src="/assets/images/publications/scientific-ai.svg" alt="Neural predictions over a physical lattice" loading="lazy"></figure><div class="paper-meta"><span>Scientific AI · Preprint</span><time>2025</time></div><h3><a href="/publications/">Learning symmetry-aware fields for scientific discovery.</a></h3><div class="paper-footer"><p class="paper-authors"><strong>Your Name</strong>, Collaborator F</p><div class="paper-links"><a href="/publications/">Preprint ↗</a><span class="status-chip">Under review</span></div></div></article>
+          <article class="feature-paper feature-paper-wide reveal" data-publication-id="multimodal-foundation"><figure class="paper-visual"><img class="paper-ambient" src="/assets/images/publications/multimodal-foundation.svg" alt="" aria-hidden="true" loading="lazy"><img class="paper-artwork" src="/assets/images/publications/multimodal-foundation.svg" alt="Multiple scientific modalities connected to a shared latent space" loading="lazy"></figure><div class="paper-meta"><span>Transactions on Machine Learning</span><time>2025</time></div><h3><a href="/publications/">A multimodal foundation model for heterogeneous scientific signals.</a></h3><div class="paper-footer"><p class="paper-authors"><strong>Your Name</strong>, Research Team</p><div class="paper-links"><a href="/publications/">Paper ↗</a><a href="/projects/">Demo ↗</a></div></div></article>
+          <article class="feature-paper feature-paper-compact reveal" data-publication-id="data-centric"><figure class="paper-visual"><img class="paper-ambient" src="/assets/images/directions/robust-learning.svg" alt="" aria-hidden="true" loading="lazy"><img class="paper-artwork" src="/assets/images/directions/robust-learning.svg" alt="Controlled transformations for robust learning" loading="lazy"></figure><div class="paper-meta"><span>Data-centric AI</span><time>2024</time></div><h3><a href="/publications/">Data matters: diagnosing representation failures under distribution shift.</a></h3><div class="paper-footer"><p class="paper-authors"><strong>Your Name</strong>, Collaborator G</p><div class="paper-links"><a href="/publications/">Paper ↗</a></div></div></article>
+          <article class="feature-paper feature-paper-compact reveal" data-publication-id="efficient-learning"><figure class="paper-visual"><img class="paper-ambient" src="/assets/images/directions/scientific-ai.svg" alt="" aria-hidden="true" loading="lazy"><img class="paper-artwork" src="/assets/images/directions/scientific-ai.svg" alt="An efficient neural field architecture" loading="lazy"></figure><div class="paper-meta"><span>Efficient Learning</span><time>2024</time></div><h3><a href="/publications/">Efficient state-space models for high-resolution scientific data.</a></h3><div class="paper-footer"><p class="paper-authors"><strong>Your Name</strong>, Collaborator H</p><div class="paper-links"><a href="/publications/">Paper ↗</a><a href="/projects/">Code ↗</a></div></div></article>
+        </div>
+        <div class="complete-publications reveal" aria-labelledby="complete-publications-title"><div class="complete-publications-heading"><div><p class="eyebrow"><span></span>Complete record</p><h3 id="complete-publications-title">Additional publications.</h3></div><p>Example entries · replace with your full record</p></div><ol class="home-publication-list">
+          <li class="home-publication" data-publication-id="uncertainty"><div class="home-publication-meta"><time>2024</time><span>Workshop</span></div><div><h4><a href="/publications/">Calibrating dense predictions in open-world environments.</a></h4><p><strong>Your Name</strong>, Collaborator I</p></div><div class="home-publication-links"><a href="/publications/">Paper ↗</a></div></li>
+          <li class="home-publication" data-publication-id="benchmark"><div class="home-publication-meta"><time>2023</time><span>Dataset Track</span></div><div><h4><a href="/projects/">A benchmark for multimodal reasoning under sensor failure.</a></h4><p>Collaborator J, <strong>Your Name</strong></p></div><div class="home-publication-links"><a href="/projects/">Dataset ↗</a></div></li>
+        </ol></div>
+        <div class="publications-cta reveal"><p>The dedicated library provides year, venue and topic filters, direct links and one-click BibTeX copying.</p><a class="button button-primary" href="/publications/">Open searchable library ↗</a></div>
+      </div>
+    </section>
+
+    <section class="section projects-section" id="projects" aria-labelledby="projects-title"><div class="shell"><header class="section-heading section-heading-light reveal"><div><p class="eyebrow"><span></span>Research artifacts</p><h2 id="projects-title">Methods made<br><em>tangible.</em></h2></div><div><p>Pair publications with datasets, code, demos and clear visual explanations.</p><a class="section-action section-action-dark" href="/projects/">View all projects <span>↗</span></a></div></header>
+      <article class="project-card reveal"><a class="project-media" href="/projects/featured-project/"><img src="/assets/images/publications/world-models.svg" alt="World-model project visualization" loading="lazy"><span>Explore project <i>↗</i></span></a><div class="project-content"><div class="project-label"><span>Featured method</span><time>2026</time></div><h3>Atlas<em>World</em></h3><p>An example project page for a multimodal world model that predicts structured futures.</p><dl class="project-stats"><div><dt>Modalities</dt><dd>4</dd></div><div><dt>Scenarios</dt><dd>120</dd></div><div><dt>Open source</dt><dd>Yes</dd></div></dl><div class="project-links"><a href="/projects/featured-project/">Project page ↗</a><a href="/publications/">Paper ↗</a></div></div></article>
+      <article class="project-card reveal"><a class="project-media" href="/projects/medical-ai/"><img src="/assets/images/publications/medical-ai.svg" alt="Medical AI project visualization" loading="lazy"><span>Explore project <i>↗</i></span></a><div class="project-content"><div class="project-label"><span>Scientific benchmark</span><time>2025</time></div><h3>Med<em>Field</em></h3><p>An example benchmark page for uncertainty-aware volumetric medical segmentation.</p><dl class="project-stats"><div><dt>Volumes</dt><dd>480</dd></div><div><dt>Structures</dt><dd>12</dd></div><div><dt>Tasks</dt><dd>3</dd></div></dl><div class="project-links"><a href="/projects/medical-ai/">Project page ↗</a><a href="/publications/">Paper ↗</a></div></div></article>
+    </div></section>
+
+    <section class="section news-section" id="news" aria-labelledby="news-title"><div class="shell split-section"><header class="sticky-heading reveal"><p class="eyebrow"><span></span>Latest signals</p><h2 id="news-title">Research<br><em>news.</em></h2><p>Keep this section selective: awards, releases and major publication milestones.</p><a class="section-action" href="/research/#timeline">View timeline <span>↗</span></a></header><div class="timeline">
+      <article class="timeline-item reveal"><time datetime="2026-06">Jun 2026</time><span></span><p><strong>AtlasWorld</strong> code and interactive demo released.</p></article>
+      <article class="timeline-item reveal"><time datetime="2026-03">Mar 2026</time><span></span><p><strong>Sphere-native perception</strong> selected for an oral presentation.</p></article>
+      <article class="timeline-item reveal"><time datetime="2025-11">Nov 2025</time><span></span><p><strong>MedField</strong> benchmark accepted to the dataset track.</p></article>
+    </div></div></section>
+
+    <section class="section service-section" id="service" aria-labelledby="service-title"><div class="shell"><header class="section-heading reveal"><div><p class="eyebrow"><span></span>Academic community</p><h2 id="service-title">Service &amp;<br><em>leadership.</em></h2></div><p>Show only roles that help readers understand how you contribute to your research community.</p></header><div class="service-grid">
+      <article class="service-card reveal"><p class="card-kicker">Membership</p><ul><li><strong>Professional society</strong><span>Member · since 2024</span></li><li><strong>Research network</strong><span>Working group contributor</span></li></ul></article>
+      <article class="service-card reveal"><p class="card-kicker">Peer review</p><ul><li><strong>Selected journals</strong><span>Journal A · Journal B · Journal C</span></li><li><strong>Selected conferences</strong><span>Conference A · Conference B</span></li></ul></article>
+      <article class="service-card reveal"><p class="card-kicker">Community</p><div class="conference-cloud"><span>Workshop</span><span>Mentoring</span><span>Open source</span><span>Seminar</span><span>Outreach</span></div><p class="service-note">Replace generic labels with the activities that best communicate your academic citizenship.</p></article>
+    </div></div></section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="contact-glow" aria-hidden="true"></div><div class="marquee" aria-hidden="true"><div>BUILDING INTELLIGENT SYSTEMS · BUILDING INTELLIGENT SYSTEMS · BUILDING INTELLIGENT SYSTEMS · </div></div><div class="shell contact-inner reveal"><p class="eyebrow">Have an idea?</p><h2 id="contact-title">Let's explore it<br><em>together.</em></h2><p>Replace this text with a direct invitation for collaboration, mentoring, speaking or career opportunities.</p><a class="email-link" href="mailto:hello@example.com">hello@example.com <span>↗</span></a></div>
+      <footer class="site-footer shell"><div class="footer-links"><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Google Scholar ↗</a><a href="https://orcid.org/" target="_blank" rel="noreferrer">ORCID ↗</a><a href="https://github.com/yourusername" target="_blank" rel="noreferrer">GitHub ↗</a></div><div class="footer-meta"><span>© <span data-year>2026</span> Your Name</span><a href="https://github.com/zhuqinfeng1999/interactive-academic-portfolio" target="_blank" rel="noreferrer">Spatialfolio template ↗</a><a href="#home">Back to top ↑</a></div></footer>
+    </section>
+  </main>
+
+  <script src="/assets/js/cosmic.js?v=1" defer></script>
+  <script src="/assets/js/spatial-world.js?v=1" defer></script>
+</body>
+</html>

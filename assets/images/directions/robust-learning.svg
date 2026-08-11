@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#11100d"/><g transform="translate(210 235)" fill="none" stroke-width="5"><rect width="180" height="180" rx="25" stroke="#79f3ee"/><rect x="300" width="180" height="180" rx="25" stroke="#ff9d66" transform="rotate(9 390 90)"/><rect x="600" width="180" height="180" rx="25" stroke="#9a8cff" transform="skewX(-8)"/></g>
+  <g fill="#f4f6f3" opacity=".8"><circle cx="270" cy="295" r="9"/><circle cx="330" cy="355" r="9"/><circle cx="565" cy="280" r="9"/><circle cx="600" cy="360" r="9"/><circle cx="845" cy="315" r="9"/><circle cx="910" cy="370" r="9"/></g><path d="M400 325h95M700 325h95" stroke="#f4f6f3" stroke-dasharray="8 10" opacity=".35"/>
+</svg>
