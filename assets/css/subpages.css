@@ -213,17 +213,31 @@
   z-index: 5;
   right: 28px;
   top: 70px;
-  color: rgba(240,247,247,.7);
-  font: 500 10px/1 "DM Mono", monospace;
-  letter-spacing: .1em;
+  display: grid;
+  padding: 9px 11px;
+  border: 1px solid rgba(121,243,238,.18);
+  border-radius: 14px;
+  grid-template-columns: 30px auto;
+  gap: 10px;
+  align-items: center;
+  color: rgba(240,247,247,.88);
+  background: rgba(4,10,15,.62);
+  box-shadow: 0 14px 38px rgba(0,0,0,.18);
+  backdrop-filter: blur(16px);
+  font-family: var(--mono);
   text-decoration: none;
-  text-transform: uppercase;
-  transition: color .2s ease;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
 }
 
+.explorer-template-credit::before { width: 19px; height: 19px; margin: auto; content: ""; background: currentColor; -webkit-mask: url("/assets/images/github-mark.svg") center / contain no-repeat; mask: url("/assets/images/github-mark.svg") center / contain no-repeat; }
+.explorer-template-credit span { display: grid; gap: 2px; }
+.explorer-template-credit small { color: var(--cyan); font-size: 6px; letter-spacing: .15em; text-transform: uppercase; }
+.explorer-template-credit strong { font-size: 8px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
+
 .explorer-template-credit:hover,
-.explorer-template-credit:focus-visible { color: var(--cyan); }
+.explorer-template-credit:focus-visible { color: var(--ink); border-color: rgba(121,243,238,.5); background: rgba(8,19,26,.82); transform: translateY(-1px); }
 
 @media (max-width: 720px) {
-  .explorer-template-credit { top: 62px; right: 16px; font-size: 8px; }
+  .explorer-template-credit { top: 62px; right: 16px; padding: 8px 9px; grid-template-columns: 24px auto; gap: 8px; }
+  .explorer-template-credit strong { font-size: 7px; }
 }

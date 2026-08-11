@@ -339,6 +339,16 @@ img, canvas, svg { display: block; max-width: 100%; }
 .email-link { display: inline-flex; gap: 16px; padding-bottom: 6px; border-bottom: 1px solid var(--line-strong); font-family: var(--mono); font-size: clamp(10px, 1.2vw, 14px); }
 .institutional-email { display: block; margin: 17px auto 0; color: var(--faint); font-family: var(--mono); font-size: 8px; }
 .site-footer { position: relative; z-index: 2; padding: 28px 0 35px; border-top: 1px solid var(--line); }
+.template-origin { display: grid; width: min(100%, 570px); margin: 0 auto 34px; padding: 13px 14px; border: 1px solid rgba(121,243,238,.18); border-radius: 18px; grid-template-columns: 44px minmax(0,1fr) auto; gap: 14px; align-items: center; color: var(--ink); background: linear-gradient(115deg, rgba(121,243,238,.07), rgba(154,140,255,.035) 58%, rgba(255,157,102,.025)); box-shadow: 0 18px 50px rgba(0,0,0,.12); transition: border-color .25s ease, background .25s ease, transform .25s ease; }
+.template-origin:hover, .template-origin:focus-visible { color: var(--ink); border-color: rgba(121,243,238,.46); background: linear-gradient(115deg, rgba(121,243,238,.115), rgba(154,140,255,.055) 58%, rgba(255,157,102,.04)); transform: translateY(-2px); }
+.template-origin-icon { display: grid; width: 44px; height: 44px; border: 1px solid rgba(121,243,238,.22); border-radius: 13px; place-items: center; background: rgba(3,8,12,.38); }
+.template-origin-icon::before { width: 21px; height: 21px; content: ""; background: currentColor; -webkit-mask: url("/assets/images/github-mark.svg") center / contain no-repeat; mask: url("/assets/images/github-mark.svg") center / contain no-repeat; }
+.template-origin-copy { display: grid; min-width: 0; gap: 3px; }
+.template-origin-kicker { color: var(--cyan); font-family: var(--mono); font-size: 7px; letter-spacing: .16em; text-transform: uppercase; }
+.template-origin-copy strong { font-size: 13px; font-weight: 600; letter-spacing: -.01em; }
+.template-origin-detail { overflow: hidden; color: var(--faint); font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.template-origin-arrow { display: grid; width: 31px; height: 31px; border: 1px solid var(--line); border-radius: 50%; place-items: center; color: var(--cyan); font-family: var(--mono); font-size: 10px; transition: color .25s ease, background .25s ease; }
+.template-origin:hover .template-origin-arrow { color: var(--bg); background: var(--cyan); }
 .footer-links, .footer-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
 .footer-links a, .footer-meta { color: var(--faint); font-family: var(--mono); font-size: 8px; letter-spacing: .08em; text-transform: uppercase; }
 .footer-links a:hover { color: var(--cyan); }
@@ -507,6 +517,10 @@ img, canvas, svg { display: block; max-width: 100%; }
   .contact-inner h2 { font-size: clamp(64px, 22vw, 98px); }
   .email-link { font-size: 9px; }
   .footer-links { align-items: flex-start; flex-direction: column; }
+  .template-origin { margin-bottom: 28px; padding: 11px; grid-template-columns: 40px minmax(0,1fr) auto; gap: 11px; border-radius: 15px; }
+  .template-origin-icon { width: 40px; height: 40px; border-radius: 11px; }
+  .template-origin-copy strong { font-size: 12px; }
+  .template-origin-detail { font-size: 8px; }
   .subpage-hero { min-height: 78svh; padding: 145px 0 70px; }
   .subpage-kicker { margin-bottom: 42px; }
   .subpage-title { font-size: clamp(70px, 23vw, 105px); }

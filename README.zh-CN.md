@@ -6,7 +6,12 @@
 
 一款面向研究人员的沉浸式、交互式学术主页模板。它的目标不是把简历搬到网页上，而是用清晰的视觉层级解释你的**研究体系、代表成果与学术身份**。
 
-[在线参考](https://zhuqinfeng1999.github.io/) · [中文定制指南](docs/CUSTOMIZE.zh-CN.md) · [Codex 动效指南](docs/CODEX_VISUALS.zh-CN.md) · [English](README.md)
+<p align="center">
+  <strong><a href="https://zhuqinfeng1999.github.io/">访问 Qinfeng Zhu 的正式科研主页 ↗</a></strong><br>
+  <sub>Spatialfolio 的线上参考实现 · 空间智能、三维视觉、遥感与全景感知</sub>
+</p>
+
+<p align="center"><a href="docs/CUSTOMIZE.zh-CN.md">中文定制指南</a> · <a href="docs/CODEX_VISUALS.zh-CN.md">Codex 动效指南</a> · <a href="README.md">English</a></p>
 
 > 在线参考是 Qinfeng Zhu 的正式个人主页。本仓库使用明确标注的虚构示例内容，不会把作者的论文、简历或论文图片混入模板默认数据。
 
@@ -20,6 +25,21 @@
 - **零构建部署**：语义化 HTML、CSS 与原生 JavaScript 可以直接部署到 GitHub Pages。
 - **响应式与可访问性**：兼顾键盘操作、移动端、无动画偏好和可读的后备内容。
 - **适合二次设计**：可以让 Codex 根据你的学科重新制作首屏科研动效。
+
+## 效果预览
+
+![带响应式科研 Canvas 动效的 Spatialfolio 首页](docs/assets/screenshots/hero.jpg)
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/assets/screenshots/research.jpg" alt="Spatialfolio 研究方向卡片"><br><sub>配有原创科研示意图的研究方向展示</sub></td>
+    <td width="50%"><img src="docs/assets/screenshots/publications.jpg" alt="Spatialfolio 精选论文布局"><br><sub>让论文图与内容自然融合的精选成果模块</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/assets/screenshots/projects.jpg" alt="Spatialfolio 项目作品集"><br><sub>适合方法、数据集与研究地图的项目叙事页</sub></td>
+    <td width="50%"><img src="docs/assets/screenshots/explorer.jpg" alt="Spatialfolio 全屏交互式 Explorer"><br><sub>可按研究领域定制的全屏交互式科研场景</sub></td>
+  </tr>
+</table>
 
 ## 快速开始
 
@@ -69,11 +89,11 @@ npm run serve
 
 ```html
 <a href="https://github.com/zhuqinfeng1999/interactive-academic-portfolio">
-  Spatialfolio template ↗
+  Built with Spatialfolio · View the source on GitHub ↗
 </a>
 ```
 
-你可以调整文字和样式，但不能隐藏或删除来源链接。完整条款见 [LICENSE](LICENSE)。
+模板默认使用一张克制的 GitHub 来源卡片：足够清晰，可以让访客发现模板项目，但不会抢夺个人主页正文的视觉焦点。你可以调整文字和样式，但不能隐藏或删除来源链接。完整条款见 [LICENSE](LICENSE)。
 
 ## 项目结构
 
@@ -109,10 +129,10 @@ npm run validate
 
 建议 Topics：
 
-`academic-website` · `academic-portfolio` · `portfolio-template` · `researcher-portfolio` · `github-pages` · `interactive-website` · `canvas-animation` · `research-website` · `vanilla-javascript`
+`academic-website` · `academic-portfolio` · `portfolio-template` · `researcher-portfolio` · `github-pages` · `interactive-website` · `canvas-animation` · `research-website` · `vanilla-javascript` · `non-commercial`
 
 ## 许可证
 
-Spatialfolio 使用 **Spatialfolio Attribution License 1.0**。允许修改、再发布与商业使用，但需要保留源代码声明，并在公开部署的网站底部保留模板来源链接。
+Spatialfolio 使用 **Spatialfolio Non-Commercial Attribution License 1.0**。允许个人、学术、教育、科研、慈善与非营利用途，并要求保留署名；付费建站、转售、集成到商业产品或用于企业营销等商业用途，需要事先取得 Qinfeng Zhu 的书面许可。
 
 由 [Qinfeng Zhu](https://zhuqinfeng1999.github.io/) 创建。

@@ -181,6 +181,12 @@ Read [CODEX_VISUALS.md](CODEX_VISUALS.md). Preserve:
 
 ## 11. Attribution
 
+Spatialfolio is licensed for non-commercial personal, academic, educational,
+research, charitable, and nonprofit use. Paid client work, resale, commercial
+product integration, hosted commercial services, and company marketing require
+prior written permission from Qinfeng Zhu. See the repository [LICENSE](../LICENSE)
+for the complete terms.
+
 Keep the visible link to:
 
 ```text

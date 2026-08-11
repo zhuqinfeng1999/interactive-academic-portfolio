@@ -1,34 +1,50 @@
-Spatialfolio Attribution License 1.0 (SAL-1.0)
+Spatialfolio Non-Commercial Attribution License 1.0 (SNCA-1.0)
 
 Copyright (c) 2026 Qinfeng Zhu
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software, visual design, and associated documentation files (the
-"Work"), to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Work, and to permit persons to whom the Work is furnished
-to do so, subject to the following conditions:
+Permission is granted to view, copy, modify, and redistribute this software,
+visual design, and associated documentation (the "Work") solely for
+non-commercial personal, academic, educational, research, charitable, or
+nonprofit purposes, subject to the following conditions:
 
-1. Source distributions must retain the above copyright notice, this license,
-   and the repository URL:
+1. Source distributions and substantial derivatives must retain this
+   copyright notice, this license, and the repository URL:
    https://github.com/zhuqinfeng1999/interactive-academic-portfolio
 
 2. Any publicly accessible website that uses a substantial portion of the
    Work's HTML, CSS, JavaScript, interaction design, or visual system must
    display a reasonably visible and accessible credit link in its site footer
-   to the repository URL above.
+   to the repository URL above. The credit may be restyled or reworded, but it
+   must remain readable, keyboard accessible, and may not be hidden through
+   CSS, scripting, overlays, inadequate contrast, or other technical means.
 
-3. The credit link may be restyled or reworded, but it must remain readable,
-   keyboard accessible, and must not be hidden through CSS, scripting,
-   overlays, color contrast, or other technical means.
+3. Commercial use is prohibited without prior written permission from Qinfeng
+   Zhu. Prohibited commercial use includes, without limitation:
 
-4. The name of Qinfeng Zhu or Spatialfolio may not be used to imply
+   a. selling, sublicensing, or listing the Work or a derivative as a paid
+      theme, template, product, or download;
+   b. using the Work in paid website-development, design, consulting, or
+      agency services;
+   c. bundling the Work with a paid product, platform, subscription, course,
+      or service;
+   d. operating the Work as part of a revenue-generating hosted service; or
+   e. deploying the Work primarily to advertise a company, employer,
+      commercial laboratory, product, or service.
+
+4. A personal academic or professional portfolio remains a permitted
+   non-commercial use even when it supports study, research collaboration,
+   internship applications, grant applications, or an individual's job
+   search, provided the website is not created or sold as paid client work and
+   does not represent a commercial organization.
+
+5. The name of Qinfeng Zhu or Spatialfolio may not be used to imply
    endorsement of a derived website, product, organization, or service without
    prior written permission.
+
+For commercial licensing enquiries, contact zhuqinfeng1999@gmail.com.
 
 THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE WORK OR THE USE OR OTHER DEALINGS IN THE
-WORK.
+AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM, OUT
+OF, OR IN CONNECTION WITH THE WORK OR THE USE OR OTHER DEALINGS IN THE WORK.

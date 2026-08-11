@@ -6,7 +6,12 @@
 
 A cinematic, interactive academic portfolio template for researchers who want their website to explain a **research system**, not merely reproduce a CV.
 
-[Live reference](https://zhuqinfeng1999.github.io/) · [Customization guide](docs/CUSTOMIZE.md) · [Codex visual guide](docs/CODEX_VISUALS.md) · [中文说明](README.zh-CN.md)
+<p align="center">
+  <strong><a href="https://zhuqinfeng1999.github.io/">View Qinfeng Zhu's live research portfolio ↗</a></strong><br>
+  <sub>The production reference behind Spatialfolio · spatial intelligence, 3D vision, remote sensing and panoramic perception</sub>
+</p>
+
+<p align="center"><a href="docs/CUSTOMIZE.md">Customization guide</a> · <a href="docs/CODEX_VISUALS.md">Codex visual guide</a> · <a href="README.zh-CN.md">中文说明</a></p>
 
 > The live reference is Qinfeng Zhu's production portfolio. This repository ships fictional sample content so you can safely replace it with your own work.
 
@@ -20,6 +25,21 @@ A cinematic, interactive academic portfolio template for researchers who want th
 - **Zero-build deployment**: semantic HTML, custom CSS and vanilla JavaScript work directly on GitHub Pages.
 - **Responsive and considerate**: keyboard access, meaningful fallback content and reduced-motion support are built in.
 - **Designed for adaptation**: replace the visual field with a Codex-generated scene for your discipline.
+
+## Preview
+
+![Interactive Spatialfolio homepage with a responsive scientific Canvas scene](docs/assets/screenshots/hero.jpg)
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/assets/screenshots/research.jpg" alt="Spatialfolio research direction cards"><br><sub>Research directions with original scientific illustrations</sub></td>
+    <td width="50%"><img src="docs/assets/screenshots/publications.jpg" alt="Spatialfolio featured publication layout"><br><sub>Editorial featured publications with integrated figures</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/assets/screenshots/projects.jpg" alt="Spatialfolio project portfolio"><br><sub>Project stories for methods, datasets and research maps</sub></td>
+    <td width="50%"><img src="docs/assets/screenshots/explorer.jpg" alt="Spatialfolio full-screen interactive explorer"><br><sub>A full-screen explorer with discipline-specific sensing modes</sub></td>
+  </tr>
+</table>
 
 ## Quick start
 
@@ -69,11 +89,11 @@ Public websites built substantially from Spatialfolio must keep a visible footer
 
 ```html
 <a href="https://github.com/zhuqinfeng1999/interactive-academic-portfolio">
-  Spatialfolio template ↗
+  Built with Spatialfolio · View the source on GitHub ↗
 </a>
 ```
 
-You may restyle or reword the credit, but the source link must remain readable and accessible. See [LICENSE](LICENSE) for the complete terms.
+The included credit is a compact GitHub provenance card: visible enough to make the source discoverable, but visually subordinate to the portfolio itself. You may restyle or reword it, but the source link must remain readable and accessible. See [LICENSE](LICENSE) for the complete terms.
 
 ## Project structure
 
@@ -109,7 +129,7 @@ Recommended GitHub **About** text:
 
 Recommended topics:
 
-`academic-website` · `academic-portfolio` · `portfolio-template` · `researcher-portfolio` · `github-pages` · `interactive-website` · `canvas-animation` · `research-website` · `vanilla-javascript`
+`academic-website` · `academic-portfolio` · `portfolio-template` · `researcher-portfolio` · `github-pages` · `interactive-website` · `canvas-animation` · `research-website` · `vanilla-javascript` · `non-commercial`
 
 ## Contributing
 
@@ -117,6 +137,6 @@ Bug fixes, accessibility improvements and discipline-specific visual modes are w
 
 ## License
 
-Spatialfolio is released under the **Spatialfolio Attribution License 1.0**. Reuse and modification are permitted, including commercial use, provided the source notice is retained and public deployments keep the visible footer credit.
+Spatialfolio is released under the **Spatialfolio Non-Commercial Attribution License 1.0**. Personal, academic, educational, research, charitable, and nonprofit use is permitted with attribution. Commercial use—including paid website work, resale, commercial product integration, and company marketing—requires prior written permission from Qinfeng Zhu.
 
 Created by [Qinfeng Zhu](https://zhuqinfeng1999.github.io/).
