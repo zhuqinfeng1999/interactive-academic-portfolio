@@ -430,6 +430,12 @@
       let centerX = this.scene === 'explorer' ? this.width * .66 : this.width * .58;
       let centerY = this.height * .52;
 
+      if (this.mode === 'pointcloud') {
+        focal *= this.scene === 'explorer' ? 1.09 : 1.07;
+        centerX = this.scene === 'explorer' ? this.width * .64 : this.width * .59;
+        centerY = this.height * .535;
+      }
+
       if (this.mode === 'aerial') {
         position = { x: 1.7 + pointerYaw * .35, y: 17.4, z: 2.7 + pointerPitch * .18 };
         target = { x: 0, y: 0, z: -.35 };
@@ -549,8 +555,8 @@
       context.fillRect(0, 0, this.width, this.height);
 
       const glow = context.createRadialGradient(this.width * .68, this.height * .43, 20, this.width * .68, this.height * .5, Math.max(this.width, this.height) * .62);
-      glow.addColorStop(0, 'rgba(72,126,177,.14)');
-      glow.addColorStop(.48, 'rgba(35,69,101,.05)');
+      glow.addColorStop(0, this.mode === 'pointcloud' ? 'rgba(78,145,194,.18)' : 'rgba(72,126,177,.14)');
+      glow.addColorStop(.48, this.mode === 'pointcloud' ? 'rgba(37,78,111,.065)' : 'rgba(35,69,101,.05)');
       glow.addColorStop(1, 'rgba(3,6,9,0)');
       context.fillStyle = glow;
       context.fillRect(0, 0, this.width, this.height);
@@ -589,7 +595,7 @@
       this.probe.pulses = this.probe.pulses.filter((pulse) => time - pulse.born < 1150);
     }
 
-    semanticAmount(point, projection, time) {
+    semanticAmount(point, projection, time, probeDistanceSquared = null) {
       if (this.mode === 'aerial') {
         const footprintDistance = Math.max(
           Math.abs(point.x - this.aerial.x) / 2.45,
@@ -603,8 +609,11 @@
         return .22 + corridor * .5;
       }
 
-      const distance = Math.hypot(projection.x - this.probe.x, projection.y - this.probe.y);
-      let amount = .018 + .982 * (1 - smoothstep(this.probe.radius * .56, this.probe.radius, distance));
+      const distanceSquared = probeDistanceSquared ?? (
+        (projection.x - this.probe.x) ** 2 + (projection.y - this.probe.y) ** 2
+      );
+      const innerRadius = this.probe.radius * .56;
+      let amount = .018 + .982 * (1 - smoothstep(innerRadius * innerRadius, this.probe.radius * this.probe.radius, distanceSquared));
 
       this.probe.pulses.forEach((pulse) => {
         const progress = clamp((time - pulse.born) / 1150, 0, 1);
@@ -625,25 +634,34 @@
       const semanticBuckets = new Map(Object.keys(this.semanticColors).map((kind) => [kind, []]));
       const probeScores = new Map(Object.keys(this.semanticColors).map((kind) => [kind, { score: 0, item: null, distance: Infinity }]));
       const scoreWeight = { ground: .14, road: .3, marking: .58, building: 1, vegetation: 1.08, street: .68, vehicle: 1.42, water: .9 };
+      const isPointcloud = this.mode === 'pointcloud';
+      const scoreRadius = this.probe.radius * .78;
+      const scoreRadiusSquared = scoreRadius * scoreRadius;
 
       for (let index = 0; index < this.points.length; index += 1) {
         const point = this.points[index];
         const projection = this.project(point);
         if (!projection || projection.x < -24 || projection.x > this.width + 24 || projection.y < -24 || projection.y > this.height + 24) continue;
-        const farFade = clamp(1 - (projection.depth - 11) / 16, .32, 1);
-        const size = clamp(point.size * projection.scale * .015, .58, this.mobile ? 1.75 : 2.25);
-        const semantic = this.semanticAmount(point, projection, time);
-        const item = { point, projection, farFade, size, semantic };
+        const farFade = this.mode === 'pointcloud'
+          ? clamp(1 - (projection.depth - 10) / 17, .42, 1)
+          : clamp(1 - (projection.depth - 11) / 16, .32, 1);
+        const depthPresence = 1 - smoothstep(12, 25, projection.depth);
+        const pointScale = this.mode === 'pointcloud' ? .0172 : .015;
+        const size = clamp(point.size * projection.scale * pointScale, this.mode === 'pointcloud' ? .66 : .58, this.mobile ? 1.85 : (this.mode === 'pointcloud' ? 2.55 : 2.25));
+        const probeDx = isPointcloud ? projection.x - this.probe.x : 0;
+        const probeDy = isPointcloud ? projection.y - this.probe.y : 0;
+        const probeDistanceSquared = isPointcloud ? probeDx * probeDx + probeDy * probeDy : null;
+        const semantic = this.semanticAmount(point, projection, time, probeDistanceSquared);
+        const item = { point, projection, farFade, depthPresence, size, semantic };
         projected.push(item);
         semanticBuckets.get(point.kind)?.push(item);
-        if (this.mode === 'pointcloud') {
-          const distance = Math.hypot(projection.x - this.probe.x, projection.y - this.probe.y);
-          if (distance < this.probe.radius * .78) {
-            const score = (1 - distance / (this.probe.radius * .78)) * (scoreWeight[point.kind] || .5);
+        if (isPointcloud) {
+          if (probeDistanceSquared < scoreRadiusSquared) {
+            const score = (1 - probeDistanceSquared / scoreRadiusSquared) * (scoreWeight[point.kind] || .5);
             const bucket = probeScores.get(point.kind);
             bucket.score += score;
-            if (distance < bucket.distance) {
-              bucket.distance = distance;
+            if (probeDistanceSquared < bucket.distance) {
+              bucket.distance = probeDistanceSquared;
               bucket.item = item;
             }
           }
@@ -658,22 +676,45 @@
       }
 
       context.save();
-      context.fillStyle = '#8299b0';
+      context.fillStyle = this.mode === 'pointcloud' ? '#91abc3' : '#8299b0';
       context.globalAlpha = this.mode === 'panoramic' ? .24 : .38;
-      projected.forEach(({ point, projection, farFade, size }) => {
-        context.globalAlpha = point.alpha * farFade * (this.mode === 'panoramic' ? .36 : .58);
+      projected.forEach(({ point, projection, farFade, depthPresence, size }) => {
+        const clutterScale = this.mode === 'pointcloud' && (point.kind === 'ground' || point.kind === 'road') ? .8 : 1;
+        const basePresence = this.mode === 'pointcloud' ? (.58 + depthPresence * .22) : .58;
+        context.globalAlpha = point.alpha * farFade * clutterScale * (this.mode === 'panoramic' ? .36 : basePresence);
         context.fillRect(projection.x, projection.y, size, size);
       });
 
       semanticBuckets.forEach((items, kind) => {
         context.fillStyle = this.semanticColors[kind];
-        items.forEach(({ point, projection, farFade, size, semantic }) => {
-          if (semantic < .07) return;
-          context.globalAlpha = clamp(point.alpha * farFade * semantic * .92, .03, .86);
-          const semanticSize = size * (1 + semantic * .16);
+        items.forEach(({ point, projection, farFade, depthPresence, size, semantic }) => {
+          const ambientSemantic = this.mode === 'pointcloud'
+            ? ({ building: .21, vegetation: .2, vehicle: .28, street: .15, marking: .18, road: .075, ground: .045, water: .16 }[kind] || .1)
+            : 0;
+          const semanticPresence = Math.max(semantic, ambientSemantic);
+          if (semanticPresence < .06) return;
+          const geometryBoost = this.mode === 'pointcloud' ? (.92 + depthPresence * .18) : .92;
+          context.globalAlpha = clamp(point.alpha * farFade * semanticPresence * geometryBoost, .035, .92);
+          const semanticSize = size * (1 + semanticPresence * (this.mode === 'pointcloud' ? .23 : .16));
           context.fillRect(projection.x - semanticSize * .08, projection.y - semanticSize * .08, semanticSize, semanticSize);
         });
       });
+
+      if (this.mode === 'pointcloud') {
+        context.globalCompositeOperation = 'screen';
+        semanticBuckets.forEach((items, kind) => {
+          if (!['building', 'vegetation', 'vehicle', 'marking'].includes(kind)) return;
+          context.fillStyle = this.semanticColors[kind];
+          items.forEach(({ point, projection, farFade, size, semantic }, index) => {
+            if (index % 3 !== 0 || semantic < .42) return;
+            /* A larger translucent pixel reads as a glow without the costly per-point shadow filter. */
+            context.globalAlpha = clamp(point.alpha * farFade * semantic * .12, 0, .1);
+            const glowSize = Math.max(1.4, size * 1.72);
+            context.fillRect(projection.x - glowSize * .24, projection.y - glowSize * .24, glowSize, glowSize);
+          });
+        });
+        context.globalCompositeOperation = 'source-over';
+      }
       context.restore();
     }
 
@@ -1079,8 +1120,8 @@
       const context = this.context;
       const fog = context.createLinearGradient(0, 0, 0, this.height);
       fog.addColorStop(0, 'rgba(3,6,9,0)');
-      fog.addColorStop(.76, 'rgba(3,6,9,.015)');
-      fog.addColorStop(1, 'rgba(3,6,9,.66)');
+      fog.addColorStop(.76, this.mode === 'pointcloud' ? 'rgba(3,6,9,.008)' : 'rgba(3,6,9,.015)');
+      fog.addColorStop(1, this.mode === 'pointcloud' ? 'rgba(3,6,9,.48)' : 'rgba(3,6,9,.66)');
       context.fillStyle = fog;
       context.fillRect(0, 0, this.width, this.height);
     }

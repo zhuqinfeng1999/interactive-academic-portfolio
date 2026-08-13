@@ -41,7 +41,11 @@
       if (loaderProgress) loaderProgress.style.width = `${eased * 100}%`;
       if (loaderWord && nextWord !== activeWord) {
         activeWord = nextWord;
-        loaderWord.textContent = words[activeWord];
+        loaderWord.classList.add('swapping');
+        window.setTimeout(() => {
+          loaderWord.textContent = words[activeWord];
+          loaderWord.classList.remove('swapping');
+        }, 140);
       }
       if (progress < 1) requestAnimationFrame(tick);
       else completeLoader();
