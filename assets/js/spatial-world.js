@@ -12,7 +12,8 @@
   class SpatialWorld {
     constructor(canvas) {
       this.canvas = canvas;
-      this.context = canvas.getContext('2d', { alpha: false, desynchronized: true });
+      // Present complete frames; desynchronized updates can expose half-drawn overlays.
+      this.context = canvas.getContext('2d', { alpha: false });
       if (!this.context) return;
 
       this.scene = canvas.dataset.scene || 'hero';
@@ -80,6 +81,17 @@
       };
 
       this.generateWorld();
+      if (window.SpatialCloud) {
+        try {
+          this.cloud = new window.SpatialCloud(this);
+        } catch (error) {
+          // Retain the Canvas renderer on devices without a working WebGL context.
+          this.canvas.parentElement.querySelector('.spatial-cloud-canvas')?.remove();
+          this.canvas.closest('.hero, .explorer-shell')?.querySelector('.cloud-controls')?.remove();
+          this.canvas.style.visibility = '';
+          this.cloud = null;
+        }
+      }
       this.bind();
       this.resize();
       this.updateReadout();
@@ -333,18 +345,26 @@
         button.setAttribute('aria-pressed', String(active));
       });
       const role = document.querySelector('[data-roles]');
-      const roleCopy = { pointcloud: '3D environments', aerial: 'remote sensing', panoramic: 'panoramic worlds', robotics: 'robotic perception' };
+      const roleCopy = { pointcloud: '3D environments', aerial: 'our planet', panoramic: 'panoramic worlds', robotics: 'dynamic environments' };
       if (role && roleCopy[mode]) {
         role.dataset.modeLocked = mode;
         role.textContent = roleCopy[mode];
         role.classList.remove('is-changing');
       }
       this.updateReadout();
+      this.cloud?.setMode(mode);
+      if (!reducedMotion && !this.frame) this.draw(performance.now());
       if (reducedMotion) this.draw(performance.now(), true);
     }
 
     updateReadout() {
-      const copy = this.modeCopy[this.mode] || this.modeCopy.pointcloud;
+      const sharedCopy = {
+        pointcloud: ['Spatial reconstruction', 'Inspect structure · drag to orbit', 'Urban reconstruction', 'Hover or tap to inspect'],
+        aerial: ['Earth observation', 'Move the footprint · click to hold', 'Multispectral sampling', 'Move to sample · click to hold'],
+        panoramic: ['Panoramic perception', 'Direct the gaze · click to hold', '360° observation', 'Move to direct the gaze'],
+        robotics: ['Embodied navigation', 'Choose a road destination · click to navigate', 'Road navigation', 'Point and click to navigate']
+      };
+      const copy = this.cloud?.available ? sharedCopy[this.mode] : this.modeCopy[this.mode] || this.modeCopy.pointcloud;
       document.querySelectorAll('[data-world-title]').forEach((node) => { node.textContent = copy[0]; });
       document.querySelectorAll('[data-world-detail]').forEach((node) => { node.textContent = copy[1]; });
       document.querySelectorAll('[data-world-status]').forEach((node) => { node.textContent = copy[2]; });
@@ -1129,6 +1149,10 @@
     draw(time = 0, force = false) {
       this.frame = 0;
       if (!force && (!this.visible || !this.documentVisible)) return;
+      if (this.cloud?.available) {
+        this.cloud.requestDraw();
+        return;
+      }
       if (!force && time - this.lastTime < 30) {
         this.frame = requestAnimationFrame((next) => this.draw(next));
         return;

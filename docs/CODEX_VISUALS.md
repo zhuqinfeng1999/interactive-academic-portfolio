@@ -19,7 +19,10 @@ Avoid requests such as “make it more futuristic” without explaining the rese
 
 ## Required technical contract
 
-Ask Codex to preserve these behaviors in `assets/js/spatial-world.js`:
+The shared urban geometry and all four GPU modes live in `assets/js/spatial-cloud.js`;
+interface coordination and the Canvas 2D compatibility renderer live in `assets/js/spatial-world.js`.
+Both are loaded by the homepage and Explorer, with the GPU module first.
+Ask Codex to preserve these behaviors:
 
 - canvases are discovered through `[data-spatial-world]`;
 - the instance remains available as `canvas.spatialWorld`;
@@ -61,9 +64,10 @@ Recommend one concept and identify likely failure modes.
 ### Pass 2 — implementation
 
 ```text
-Implement the selected concept in assets/js/spatial-world.js.
+Implement the selected concept in assets/js/spatial-cloud.js (shared geometry and
+all four GPU modes). Update assets/js/spatial-world.js for interface or fallback changes.
 Preserve the Spatialfolio public interface, all existing page hooks, mobile behavior,
-reduced-motion support and the visible template attribution. Use only Canvas 2D and
+reduced-motion support and the visible template attribution. Use native WebGL, Canvas 2D and
 repository-local assets unless I explicitly approve another dependency. Keep the
 interaction responsive, semantically meaningful and visually integrated with the
 dark cyan visual system. Update the mode labels and status text where necessary.

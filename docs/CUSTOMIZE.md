@@ -159,7 +159,14 @@ Start with the custom properties at the top of `assets/css/cosmic.css`. Keep suf
 
 Avoid adding a new card, border or animation merely to fill space. Spatialfolio works best when motion explains a research concept and when light/dark section changes separate information layers.
 
-## 9. Customize the Canvas scene
+## 9. Customize the interactive scene
+
+Shared urban geometry and all four GPU modes are in `assets/js/spatial-cloud.js`;
+interface coordination and the Canvas fallback are in `assets/js/spatial-world.js`. Shared visual refinements
+live in `assets/css/refinement.css` and are loaded after the base styles.
+For featured paper figures, keep `paper-visual-dark` on the `figure` when your
+source artwork is already dark. Remove that class for white-background paper
+figures to use the inverted, softly blended treatment.
 
 Read [CODEX_VISUALS.md](CODEX_VISUALS.md). Preserve:
 

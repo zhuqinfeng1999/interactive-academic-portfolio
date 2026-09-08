@@ -17,7 +17,7 @@
 
 ## 为什么选择 Spatialfolio
 
-- **交互式 Canvas 首屏**：内置四种研究场景，支持鼠标、触摸和模式切换。
+- **交互式科研首屏**：细节丰富的 WebGL 城市场景与四种连续的感知视角，支持鼠标、触摸和键盘。
 - **研究方向图谱**：通过一份 JSON 数据展示研究方向、论文和项目之间的联系。
 - **可检索论文库**：支持关键词搜索、年份/类型筛选和一键复制 BibTeX。
 - **项目索引与长项目页**：适合展示方法、数据集、代码、演示和研究地图。
@@ -28,7 +28,7 @@
 
 ## 效果预览
 
-![带响应式科研 Canvas 动效的 Spatialfolio 首页](docs/assets/screenshots/hero.jpg)
+![带交互式城市点云的 Spatialfolio 首页](docs/assets/screenshots/hero.jpg)
 
 <table>
   <tr>
@@ -65,7 +65,9 @@ npm run serve
 | 研究方向、论文、项目和动态 | `assets/data/research.json` |
 | 首页精选内容与顺序 | `index.html` |
 | 配色、字体和排版 | `assets/css/cosmic.css`、`assets/css/subpages.css` |
-| 首屏和 Explorer 交互动效 | `assets/js/spatial-world.js` |
+| 共享城市几何、四种 GPU 感知模式与交互控制 | `assets/js/spatial-cloud.js` |
+| 场景协调、界面接口与 Canvas 2D 兼容渲染 | `assets/js/spatial-world.js` |
+| 全站视觉优化层（最后加载） | `assets/css/refinement.css` |
 | 研究方向与论文示意图 | `assets/images/directions/`、`assets/images/publications/` |
 
 更完整的身份替换、论文数据、项目页面、SEO、可访问性和部署检查清单见 [中文定制指南](docs/CUSTOMIZE.zh-CN.md)。
@@ -74,7 +76,11 @@ npm run serve
 
 模板自带的点云、地球观测、球面视觉和具身智能模式只是示例，不要求所有人都保留。
 
-你可以让 Codex 先理解你的研究概念，再重新设计 `assets/js/spatial-world.js`，同时保持原有接口、响应式表现和可访问性。我们准备了以下方向的提示词与验收标准：
+四种视角共享同一片合成街区：检查建筑结构、移动并锁定区域采样框、控制全景视线，或让小型智能体沿道路导航。城市几何、配色与镜头过渡保持一致。这些是科研概念的交互示意，不是真实传感器测量或模型预测。
+
+所有模式都支持拖动旋转、可选语义配色、暂停和复位。方向键控制当前模式；Enter 选择建筑、锁定/释放采样与视线，或确认导航目标；空格暂停，R 复位。几何数据在本地生成，支持减少动态效果偏好，离屏后停止渲染；不支持 WebGL 时回退到 Canvas 2D。
+
+你可以让 Codex 先理解你的研究概念，再重新设计 `assets/js/spatial-cloud.js`（共享几何和四种感知模式），并按需更新 `assets/js/spatial-world.js` 中的界面文字和兼容渲染，同时保持原有接口、响应式表现和可访问性。我们准备了以下方向的提示词与验收标准：
 
 - 世界模型、自动驾驶与机器人轨迹预测；
 - 医学图像分割、三维体数据与不确定性；
@@ -108,7 +114,7 @@ npm run serve
 │   ├── css/                      # 视觉系统与响应式布局
 │   ├── data/research.json        # 全站共享研究数据
 │   ├── images/                   # 原创 SVG 示例图
-│   └── js/                       # 界面、图谱、论文库与 Canvas 引擎
+│   └── js/                       # 界面、图谱、论文库与感知场景引擎
 ├── docs/                         # 中英文定制文档
 └── scripts/                      # 无依赖的预览与校验脚本
 ```
@@ -125,7 +131,7 @@ npm run validate
 
 建议的 GitHub **About**：
 
-> A cinematic, interactive academic portfolio template for researchers, with live Canvas scenes, a research atlas, searchable publications and zero-build GitHub Pages deployment.
+> A cinematic, interactive academic portfolio template for researchers, with connected WebGL sensing scenes, a research atlas, searchable publications and zero-build GitHub Pages deployment.
 
 建议 Topics：
 

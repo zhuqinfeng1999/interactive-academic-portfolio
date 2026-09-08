@@ -17,7 +17,7 @@ A cinematic, interactive academic portfolio template for researchers who want th
 
 ## Why Spatialfolio
 
-- **Interactive Canvas hero** with four responsive sensing modes and pointer/tap interactions.
+- **Interactive research hero** with one richly detailed WebGL district, four connected sensing perspectives, and pointer, touch and keyboard interactions.
 - **Connected research atlas** driven by one structured JSON file.
 - **Searchable publication library** with year/type filters and one-click BibTeX copying.
 - **Project index and long-form project pages** for methods, datasets and research maps.
@@ -28,7 +28,7 @@ A cinematic, interactive academic portfolio template for researchers who want th
 
 ## Preview
 
-![Interactive Spatialfolio homepage with a responsive scientific Canvas scene](docs/assets/screenshots/hero.jpg)
+![Spatialfolio homepage with an interactive urban point-cloud scene](docs/assets/screenshots/hero.jpg)
 
 <table>
   <tr>
@@ -65,7 +65,9 @@ Open `http://127.0.0.1:4173/`.
 | Research areas, papers, projects and news | `assets/data/research.json` |
 | Homepage editorial selection | `index.html` |
 | Colors, typography and layouts | `assets/css/cosmic.css` and `assets/css/subpages.css` |
-| Interactive Canvas scenes | `assets/js/spatial-world.js` |
+| Shared urban geometry, four GPU sensing modes and interaction controls | `assets/js/spatial-cloud.js` |
+| Scene coordination, interface hooks and Canvas 2D fallback | `assets/js/spatial-world.js` |
+| Shared visual refinement layer (loaded last) | `assets/css/refinement.css` |
 | Research illustrations | `assets/images/directions/` and `assets/images/publications/` |
 
 The detailed checklist in [docs/CUSTOMIZE.md](docs/CUSTOMIZE.md) covers identity replacement, publication metadata, project pages, SEO, accessibility and deployment.
@@ -74,7 +76,11 @@ The detailed checklist in [docs/CUSTOMIZE.md](docs/CUSTOMIZE.md) covers identity
 
 The included point-cloud, Earth-observation, spherical and embodied-AI modes are examples—not a visual identity you must keep.
 
-Ask Codex to study your research concepts and redesign `assets/js/spatial-world.js` while preserving its public interface and accessibility constraints. The guide includes ready-to-use briefs for:
+One synthetic district connects all four views: inspect architectural structure, move and hold a regional sampling footprint, direct a panoramic gaze, or send a small agent along the boulevard. The geometry, palette and camera transitions stay coherent. These are illustrative interactions—not sensor measurements or model predictions.
+
+All modes support drag-to-orbit, optional semantic color, pause and reset. Arrow keys control the active mode; Enter selects an object, holds/releases a sample or gaze, or confirms a navigation target. Space pauses and R resets. Geometry stays local; reduced motion and offscreen rendering suspension are built in. WebGL is optional, with a Canvas 2D fallback.
+
+Ask Codex to study your research concepts and redesign `assets/js/spatial-cloud.js` (shared geometry and all four sensing modes), updating `assets/js/spatial-world.js` where interface labels or the compatibility renderer need to change. Preserve the public interface and accessibility constraints. The guide includes ready-to-use briefs for:
 
 - world models and autonomous systems;
 - medical image segmentation and volumetric uncertainty;
@@ -108,7 +114,7 @@ The included credit is a compact GitHub provenance card: visible enough to make 
 │   ├── css/                      # Visual system and responsive layouts
 │   ├── data/research.json        # Shared structured research content
 │   ├── images/                   # Original SVG example visuals
-│   └── js/                       # UI, atlas, library and Canvas engine
+│   └── js/                       # UI, atlas, library and sensing engine
 ├── docs/                         # English and Chinese customization guides
 └── scripts/                      # Dependency-free preview and validation
 ```
@@ -125,7 +131,7 @@ The validator checks JSON integrity, internal assets and routes, filename case, 
 
 Recommended GitHub **About** text:
 
-> A cinematic, interactive academic portfolio template for researchers, with live Canvas scenes, a research atlas, searchable publications and zero-build GitHub Pages deployment.
+> A cinematic, interactive academic portfolio template for researchers, with connected WebGL sensing scenes, a research atlas, searchable publications and zero-build GitHub Pages deployment.
 
 Recommended topics:
 

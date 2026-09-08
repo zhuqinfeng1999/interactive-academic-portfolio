@@ -19,7 +19,7 @@
 
 ## 必须保持的技术接口
 
-修改 `assets/js/spatial-world.js` 时要求 Codex 保留：
+共享城市几何和四种 GPU 模式位于 `assets/js/spatial-cloud.js`，界面协调与 Canvas 2D 兼容渲染位于 `assets/js/spatial-world.js`。首页和 Explorer 先加载 GPU 模块，再加载场景控制器。修改时要求 Codex 保留：
 
 - 通过 `[data-spatial-world]` 查找 Canvas；
 - 实例继续暴露为 `canvas.spatialWorld`；
@@ -59,9 +59,10 @@
 ### 第二阶段：实现
 
 ```text
-在 assets/js/spatial-world.js 中实现选定方案。
+在 assets/js/spatial-cloud.js（共享几何与四种 GPU 模式）中实现选定方案。
+如需更改界面或兼容渲染，同步更新 assets/js/spatial-world.js。
 保留 Spatialfolio 的公开接口、全部页面钩子、移动端行为、减少动画支持和
-可见的模板署名。除非我明确批准，只使用 Canvas 2D 和仓库内资源。
+可见的模板署名。除非我明确批准，只使用原生 WebGL、Canvas 2D 和仓库内资源。
 交互必须响应及时、科学含义清晰，并与深色青色视觉系统融合。
 必要时同步修改模式按钮和状态说明。
 ```

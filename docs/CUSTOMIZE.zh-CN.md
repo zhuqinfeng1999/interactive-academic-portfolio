@@ -143,7 +143,10 @@ Research news 建议只保留三到四条最重要的接收、获奖、开源或
 
 不要为了填空而不断增加边框、卡片和动画。Spatialfolio 最适合用“有意义的动效”解释研究概念，并通过深浅区块切换区分信息层级。
 
-## 9. 定制 Canvas 科研动效
+## 9. 定制科研交互动效
+
+共享城市几何和四种 GPU 模式位于 `assets/js/spatial-cloud.js`，界面协调与 Canvas 兼容回退位于 `assets/js/spatial-world.js`。全站视觉优化层 `assets/css/refinement.css` 在基础样式之后加载。
+精选论文的原图为深色时，保留 `figure` 上的 `paper-visual-dark` 类；换成白底论文图时移除该类，即可使用反色与柔和融合的样式。
 
 阅读 [CODEX_VISUALS.zh-CN.md](CODEX_VISUALS.zh-CN.md)。修改时必须保留：
 
