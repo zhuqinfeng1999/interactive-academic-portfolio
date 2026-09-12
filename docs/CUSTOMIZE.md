@@ -166,7 +166,9 @@ interface coordination and the Canvas fallback are in `assets/js/spatial-world.j
 live in `assets/css/refinement.css` and are loaded after the base styles.
 For featured paper figures, keep `paper-visual-dark` on the `figure` when your
 source artwork is already dark. Remove that class for white-background paper
-figures to use the inverted, softly blended treatment.
+figures to use the low-glare, softly blended dark-card treatment. Scientific
+hues are never inverted: brightness and saturation are gently reduced, and
+the actual image edges fade into the card. Original files stay unchanged.
 
 Read [CODEX_VISUALS.md](CODEX_VISUALS.md). Preserve:
 

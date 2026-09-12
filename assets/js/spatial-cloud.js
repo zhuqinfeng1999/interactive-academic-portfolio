@@ -5,7 +5,7 @@
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   const mix=(a,b,t)=>a+(b-a)*t;
   const modes={
-    pointcloud:{index:0,yaw:-.38,pitch:.42,distance:30,zoom:1,title:'Spatial reconstruction',hint:'Hover to inspect · drag to orbit'},
+    pointcloud:{index:0,yaw:-.38,pitch:.42,distance:30,zoom:1,title:'Spatial reconstruction',hint:'Move to inspect · click to probe · drag to orbit'},
     aerial:{index:1,yaw:-.28,pitch:1.20,distance:34,zoom:.82,title:'Earth observation',hint:'Move to sample · click to hold'},
     panoramic:{index:2,yaw:-.38,pitch:.42,distance:30,zoom:1,title:'Panoramic perception',hint:'Move to direct the gaze · click to hold'},
     robotics:{index:3,yaw:-.38,pitch:.60,distance:31,zoom:.95,title:'Embodied navigation',hint:'Point along the road · click to navigate'}
@@ -22,6 +22,7 @@
     'uniform vec3 uRight,uUp,uForward,uTarget,uAgent;',
     'uniform vec2 uViewport,uCenter,uFoot;',
     'uniform vec4 uModes;',
+    'uniform vec4 uProbe,uPulses[3];',
     'uniform vec3 uGaze;',
     'uniform float uDistance,uScale,uDpr,uTime,uSelected,uSemantic;',
     'uniform mediump float uHalo,uOverlay;',
@@ -42,6 +43,12 @@
     ' if(aMeta.x>4.5&&aMeta.x<5.5)structure=vec3(.12,.32,.47);',
     ' vec3 color=mix(structure,aColor,uSemantic*.85);',
     ' color=mix(color,aColor,selected*.86);',
+    // Screen-space inspection reveals local classes without reprojecting points on the CPU.
+    ' vec2 screen=(gl_Position.xy/gl_Position.w*.5+.5)*uViewport;screen.y=uViewport.y-screen.y;',
+    ' float local=(1.-smoothstep(uProbe.z*.55,uProbe.z,length(screen-uProbe.xy)))*uProbe.w;',
+    ' float wave=0.;for(int i=0;i<3;i++){wave=max(wave,(1.-smoothstep(5.,24.,abs(length(screen-uPulses[i].xy)-uPulses[i].z)))*uPulses[i].w);}',
+    ' float reveal=max(local*uModes.x,wave*(uModes.x+uModes.y));',
+    ' color=mix(color,aColor*1.30,reveal*.9);',
     ' vec2 sampleDelta=abs(pos.xz-uFoot);',
     ' float sampled=(1.-smoothstep(2.05,2.3,sampleDelta.x))*(1.-smoothstep(1.3,1.55,sampleDelta.y));',
     ' color=mix(color,aColor*1.35,sampled*uModes.y*.9);',
@@ -54,7 +61,7 @@
     ' float edgeFade=1.-smoothstep(.63,1.15,length(pos.xz/vec2(12.,12.)));',
     ' float depthFade=clamp(1.-(depth-19.)/44.,.25,1.);',
     ' float surfaceLight=length(aNormal)>.1?(.88+.36*max(0.,dot(aNormal,normalize(vec3(-.5,1.,.6))))):1.;',
-    ' float shine=aMeta.y*surfaceLight*(1.+selected*.35);',
+    ' float shine=aMeta.y*surfaceLight*(1.+selected*.35+reveal*.18);',
     ' vColor=color*shine;',
     ' vAlpha=visible*edgeFade*depthFade*.9;',
     ' float perspective=clamp(uDistance/depth,.65,1.45);',
@@ -97,6 +104,7 @@
       this.orbit={yaw:0,pitch:0};this.rig={...modes[this.mode]};
       this.weights=[0,0,0,0];this.weights[modes[this.mode].index]=1;
       this.semantic=0;this.semanticTarget=0;this.selected=-1;this.pinned=-1;
+      this.probe={radius:100};this.pulses=[];this.pulseData=new Float32Array(12);
       this.foot={x:1,z:0,held:false};this.gaze={yaw:-.5,pitch:.04,held:false};
       this.robot={z:5.8,start:5.8,goal:-5.8,preview:null,keyboardPreview:null,active:false};
       this.lines=new Float32Array(2400*13);this.lineCount=0;
@@ -276,6 +284,8 @@
       this.overlayBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,this.overlayBuffer);gl.bufferData(gl.ARRAY_BUFFER,this.lines.byteLength,gl.DYNAMIC_DRAW);
       this.attributes=[['aPosition',3,0],['aNormal',3,12],['aColor',3,24],['aMeta',4,36]].map(([n,size,offset])=>({loc:gl.getAttribLocation(this.program,n),size,offset}));
       this.uniforms={};['Right','Up','Forward','Target','Agent','Viewport','Center','Foot','Modes','Gaze','Distance','Scale','Dpr','Time','Selected','Semantic','Halo','Overlay'].forEach(n=>this.uniforms[n]=gl.getUniformLocation(this.program,'u'+n));
+      this.uniforms.Probe=gl.getUniformLocation(this.program,'uProbe');
+      this.uniforms.Pulses=gl.getUniformLocation(this.program,'uPulses[0]');
       gl.clearColor(0,0,0,0);gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.enable(gl.BLEND);
     }
     useBuffer(buffer){
@@ -294,12 +304,13 @@
       this.syncPause();
     }
     syncPause(){const b=this.controls.querySelector('[data-cloud-pause]');b.textContent=this.paused?'Play':'Pause';b.setAttribute('aria-pressed',String(this.paused));}
-    togglePause(){this.paused=!this.paused;this.syncPause();this.requestDraw();}
-    reset(){this.orbit={yaw:0,pitch:0};this.pinned=-1;this.foot.held=false;this.gaze.held=false;
+    togglePause(){this.paused=!this.paused;this.pulses.length=0;this.syncPause();this.requestDraw();}
+    reset(){this.orbit={yaw:0,pitch:0};this.pinned=-1;this.pulses.length=0;this.foot.held=false;this.gaze.held=false;
       this.robot={z:5.8,start:5.8,goal:-5.8,preview:null,keyboardPreview:null,active:false};this.requestDraw();}
     setMode(mode,initial=false){
       if(!this.available||!modes[mode])return;
       this.mode=mode;this.pinned=-1;this.selected=-1;this.drag=null;
+      this.pulses.length=0;this.canvas.classList.remove('is-dragging');
       this.pointer.active=false;this.orbit={yaw:0,pitch:0};
       this.canvas.setAttribute('aria-label','Interactive synthetic urban district: '+modes[mode].title+'. '+modes[mode].hint+'. Drag to orbit. Arrow keys interact with this mode; Enter selects or holds; Space pauses; R resets.');
       if(initial||this.motion.matches){this.rig={...modes[mode]};this.weights=this.weights.map((_,i)=>Number(i===modes[mode].index));}
@@ -315,7 +326,7 @@
       this.resizeObserver=new ResizeObserver(()=>this.resize());this.resizeObserver.observe(this.canvas);
       this.visibilityObserver=new IntersectionObserver(([e])=>{this.visible=e.isIntersecting;this.requestDraw();});this.visibilityObserver.observe(this.canvas);
       document.addEventListener('visibilitychange',()=>{this.lastTime=0;this.requestDraw();});
-      this.motion.addEventListener('change',()=>{this.paused=this.motion.matches;this.syncPause();this.requestDraw();});
+      this.motion.addEventListener('change',()=>{this.paused=this.motion.matches;this.pulses.length=0;this.syncPause();this.requestDraw();});
       const update=e=>{const r=this.canvas.getBoundingClientRect();this.pointer={x:e.clientX-r.left,y:e.clientY-r.top,nx:clamp((e.clientX-r.left)/r.width-.5,-.5,.5),ny:clamp((e.clientY-r.top)/r.height-.5,-.5,.5),active:true};this.robot.keyboardPreview=null;};
       this.canvas.addEventListener('pointerdown',e=>{
         update(e);this.drag={x:e.clientX,y:e.clientY,yaw:this.orbit.yaw,pitch:this.orbit.pitch,moved:false};
@@ -330,8 +341,8 @@
       const release=e=>{
         const tapped=this.drag&&!this.drag.moved&&e.type!=='pointercancel';this.drag=null;this.canvas.classList.remove('is-dragging');
         if(tapped&&this.view){
-          if(this.mode==='pointcloud'){const hit=this.pick();this.pinned=hit===this.pinned?-1:hit;}
-          if(this.mode==='aerial'){this.updateInteraction(0);this.foot.held=!this.foot.held;}
+          if(this.mode==='pointcloud'){const hit=this.pick();this.pinned=hit===this.pinned?-1:hit;this.emitPulse(this.pointer.x,this.pointer.y);}
+          if(this.mode==='aerial'){this.updateInteraction(0);this.foot.held=!this.foot.held;this.emitPulse(this.pointer.x,this.pointer.y);}
           if(this.mode==='panoramic'){this.updateInteraction(0);this.gaze.held=!this.gaze.held;}
           if(this.mode==='robotics'){const g=this.groundAtPointer();if(g){this.robot.start=this.robot.z;this.robot.goal=clamp(g[2],-7,7);this.robot.active=true;if(this.motion.matches)this.robot.z=this.robot.goal;}}
         }
@@ -346,8 +357,8 @@
         if(e.key===' ')this.togglePause();
         else if(e.key.toLowerCase()==='r')this.reset();
         else if(e.key==='Enter'){
-          if(this.mode==='pointcloud'){const buildings=this.objects.filter(o=>o.label.startsWith('Architecture'));const current=buildings.findIndex(o=>o.id===this.pinned);this.pinned=buildings[(current+1)%buildings.length].id;}
-          if(this.mode==='aerial')this.foot.held=!this.foot.held;
+          if(this.mode==='pointcloud'){const buildings=this.objects.filter(o=>o.label.startsWith('Architecture'));const current=buildings.findIndex(o=>o.id===this.pinned),object=buildings[(current+1)%buildings.length];this.pinned=object.id;const p=this.project(object.min.map((v,i)=>(v+object.max[i])*.5));if(p)this.emitPulse(p[0],p[1]);}
+          if(this.mode==='aerial'){this.foot.held=!this.foot.held;const p=this.project([this.foot.x,.16,this.foot.z]);if(p)this.emitPulse(p[0],p[1]);}
           if(this.mode==='panoramic')this.gaze.held=!this.gaze.held;
           if(this.mode==='robotics'){this.robot.start=this.robot.z;this.robot.goal=this.robot.preview??-this.robot.goal;this.robot.active=true;if(this.motion.matches)this.robot.z=this.robot.goal;}
         }else{
@@ -416,6 +427,39 @@
         if(this.robot.active&&!still){const d=this.robot.goal-this.robot.z,step=Math.min(Math.abs(d),dt*.0015);this.robot.z+=Math.sign(d)*step;if(Math.abs(d)<.025)this.robot.active=false;}
       }
     }
+    project(position){
+      if(!this.view)return null;
+      const v=this.view,p=position.map((q,i)=>q-v.target[i]),dot=a=>p.reduce((sum,q,i)=>sum+q*a[i],0);
+      const depth=v.distance+dot(v.forward);if(depth<=0)return null;
+      const f=v.scale*v.distance/depth;
+      return [this.width*(.5+v.center[0]*.5)+dot(v.right)*f,this.height*(.5-v.center[1]*.5)-dot(v.up)*f];
+    }
+    emitPulse(x,y){
+      if(this.paused||this.motion.matches)return;
+      this.pulses.push({x:x/this.width,y:y/this.height,born:performance.now(),radius:this.probe.radius});
+      if(this.pulses.length>3)this.pulses.shift();
+      this.requestDraw();
+    }
+    updateProbe(time,dt){
+      const radius=clamp(Math.min(this.width,this.height)*.145,65,116)*(this.drag&&!this.drag.moved?1.4:1);
+      this.probe.radius=mix(this.probe.radius,radius,this.paused||this.motion.matches?1:1-Math.exp(-dt/65));
+      this.pulses=this.pulses.filter(p=>time-p.born<1150);this.pulseData.fill(0);
+      this.pulses.forEach((p,i)=>{
+        const t=clamp((time-p.born)/1150,0,1);
+        this.pulseData.set([p.x*this.width,p.y*this.height,mix(p.radius*.45,p.radius*2.25,t),(1-t)*.85],i*4);
+      });
+    }
+    screenPoint(x,y){
+      const v=this.view,sx=(x-this.width*(.5+v.center[0]*.5))/v.scale,sy=(this.height*(.5-v.center[1]*.5)-y)/v.scale;
+      return v.target.map((q,i)=>q+v.right[i]*sx+v.up[i]*sy);
+    }
+    screenArc(x,y,r,start,end,color,alpha){
+      const steps=Math.ceil((end-start)*r/7);
+      for(let i=0;i<steps;i++){
+        const a=mix(start,end,i/steps),b=mix(start,end,(i+1)/steps);
+        this.line(this.screenPoint(x+Math.cos(a)*r,y+Math.sin(a)*r),this.screenPoint(x+Math.cos(b)*r,y+Math.sin(b)*r),color,alpha);
+      }
+    }
     line(a,b,color,alpha){
       if(this.lineCount+2>2400)return;
       for(const p of [a,b]){
@@ -452,10 +496,20 @@
           this.line([x-s,.17,z+s],[x+s,.17,z-s],color,alpha*strength);
         }
       }
+      this.screenLineStart=this.lineCount;
+      if(this.mode==='pointcloud'){
+        if(this.pointer.active&&!this.drag?.moved){
+          const {x,y}=this.pointer,r=this.probe.radius;
+          for(const start of [-.12,.42,.92,1.42])this.screenArc(x,y,r,start*Math.PI,(start+.16)*Math.PI,blue,.43);
+        }
+      }
+      if(this.mode==='pointcloud'||this.mode==='aerial'){
+        for(let i=0;i<this.pulses.length;i++){const [x,y,r,alpha]=this.pulseData.subarray(i*4,i*4+4);this.screenArc(x,y,r,0,Math.PI*2,blue,alpha*.55);}
+      }
     }
     updateLabel(){
       let text=modes[this.mode].hint;
-      if(this.coarse.matches&&this.mode==='pointcloud')text='Tap to inspect · drag to orbit';
+      if(this.coarse.matches&&this.mode==='pointcloud')text='Tap to probe · drag to orbit';
       if(this.mode==='pointcloud'){
         const object=this.objects.find(o=>o.id===this.selected);if(object)text=object.label+(this.pinned>0?' · selected':'');
       }else if(this.mode==='aerial'&&this.foot.held)text='Sample held · click to release';
@@ -486,13 +540,15 @@
       this.view={right,up,forward,target,scale,center,distance};
       this.updateInteraction(dt);
       this.selected=this.mode==='pointcloud'?(this.pinned>0?this.pinned:this.pick()):-1;
-      this.updateLabel();this.overlays();
+      this.updateProbe(time,dt);this.updateLabel();this.overlays();
       const gaze=[Math.sin(this.gaze.yaw)*Math.cos(this.gaze.pitch),Math.sin(this.gaze.pitch),Math.cos(this.gaze.yaw)*Math.cos(this.gaze.pitch)];
       const gl=this.gl,u=this.uniforms;gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.useProgram(this.program);
       gl.uniform3fv(u.Right,right);gl.uniform3fv(u.Up,up);gl.uniform3fv(u.Forward,forward);gl.uniform3fv(u.Target,target);
       gl.uniform3f(u.Agent,this.road(this.robot.z)+.32,0,this.robot.z);
       gl.uniform2f(u.Viewport,this.width,this.height);gl.uniform2fv(u.Center,center);gl.uniform2f(u.Foot,this.foot.x,this.foot.z);
       gl.uniform4fv(u.Modes,this.weights);gl.uniform3fv(u.Gaze,gaze);
+      gl.uniform4f(u.Probe,this.pointer.x,this.pointer.y,this.probe.radius,Number(this.mode==='pointcloud'&&this.pointer.active&&!this.drag?.moved));
+      gl.uniform4fv(u.Pulses,this.pulseData);
       gl.uniform1f(u.Distance,distance);gl.uniform1f(u.Scale,scale);gl.uniform1f(u.Dpr,this.dpr);gl.uniform1f(u.Time,this.elapsed*.001);
       gl.uniform1f(u.Selected,this.selected);gl.uniform1f(u.Semantic,this.semantic);
       gl.uniform1f(u.Overlay,0);gl.uniform1f(u.Halo,0);this.useBuffer(this.buffer);
@@ -500,7 +556,10 @@
       gl.depthMask(false);gl.blendFunc(gl.SRC_ALPHA,gl.ONE);gl.uniform1f(u.Halo,1);gl.drawArrays(gl.POINTS,0,this.count);
       if(this.lineCount){
         this.useBuffer(this.overlayBuffer);gl.bufferSubData(gl.ARRAY_BUFFER,0,this.lines.subarray(0,this.lineCount*13));
-        gl.uniform1f(u.Halo,0);gl.uniform1f(u.Overlay,1);gl.drawArrays(gl.LINES,0,this.lineCount);
+        gl.uniform1f(u.Halo,0);gl.uniform1f(u.Overlay,1);
+        if(this.screenLineStart)gl.drawArrays(gl.LINES,0,this.screenLineStart);
+        if(this.lineCount>this.screenLineStart){gl.disable(gl.DEPTH_TEST);gl.drawArrays(gl.LINES,this.screenLineStart,this.lineCount-this.screenLineStart);}
+        gl.enable(gl.DEPTH_TEST);
       }
       gl.depthMask(true);
       if(!this.paused||settling)this.requestDraw();
