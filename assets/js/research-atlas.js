@@ -1,75 +1,25 @@
 (() => {
   'use strict';
-  const stage = document.querySelector('[data-atlas-stage]');
-  const domainList = document.querySelector('[data-domain-list]');
-  const timeline = document.querySelector('[data-full-timeline]');
-  if (!stage || !domainList) return;
-
-  const escapeHtml = (value = '') => String(value)
-    .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;').replaceAll("'", '&#039;');
-  const edges = [
-    ['dense-prediction','earth-observation'],['dense-prediction','spatial-intelligence'],['dense-prediction','spherical-perception'],
-    ['dense-prediction','multimodal-learning'],['dense-prediction','robust-learning'],['dense-prediction','scientific-ai'],
-    ['earth-observation','multimodal-learning'],['earth-observation','robust-learning'],['earth-observation','scientific-ai'],
-    ['spatial-intelligence','robust-learning'],['spatial-intelligence','spherical-perception'],['spherical-perception','scientific-ai'],
-    ['spherical-perception','multimodal-learning'],['multimodal-learning','scientific-ai'],['robust-learning','scientific-ai']
-  ];
-
-  const firstLink = (publication) => publication.links.Project || publication.links.Journal || publication.links.Springer || publication.links.DOI || publication.links.arXiv || publication.links['arXiv PDF'] || '/publications/';
-
-  fetch('/assets/data/research.json')
-    .then((response) => {
-      if (!response.ok) throw new Error(`Unable to load research atlas (${response.status})`);
-      return response.json();
-    })
-    .then((data) => {
-      const publicationMap = new Map(data.publications.map((publication) => [publication.id, publication]));
-      const domainMap = new Map(data.domains.map((domain) => [domain.id, domain]));
-      const svg = stage.querySelector('[data-atlas-svg]');
-      const nodes = stage.querySelector('[data-atlas-nodes]');
-      const context = stage.querySelector('[data-atlas-context]');
-      svg.innerHTML = edges.map(([sourceId,targetId], index) => {
-        const source = domainMap.get(sourceId);
-        const target = domainMap.get(targetId);
-        return `<line class="atlas-line" data-edge="${escapeHtml(sourceId)} ${escapeHtml(targetId)}" x1="${source.position.x}%" y1="${source.position.y}%" x2="${target.position.x}%" y2="${target.position.y}%" />`;
-      }).join('');
-      nodes.innerHTML = data.domains.map((domain) => `<button class="atlas-node${domain.id === 'dense-prediction' ? ' atlas-core active' : ''}" type="button" style="left:${domain.position.x}%;top:${domain.position.y}%" data-atlas-node="${escapeHtml(domain.id)}" aria-pressed="${domain.id === 'dense-prediction'}"><b>${escapeHtml(domain.number)} · ${escapeHtml(domain.kicker)}</b><span>${escapeHtml(domain.title)}</span></button>`).join('');
-
-      const activate = (domainId) => {
-        const domain = domainMap.get(domainId);
-        if (!domain) return;
-        nodes.querySelectorAll('[data-atlas-node]').forEach((node) => {
-          const active = node.dataset.atlasNode === domainId;
-          node.classList.toggle('active', active);
-          node.setAttribute('aria-pressed', String(active));
-        });
-        svg.querySelectorAll('[data-edge]').forEach((line) => line.classList.toggle('active', line.dataset.edge.split(' ').includes(domainId)));
-        const works = domain.publicationIds.slice(0,4).map((id) => publicationMap.get(id)).filter(Boolean);
-        context.innerHTML = `<p class="atlas-context-label">${escapeHtml(domain.number)} · ${escapeHtml(domain.kicker)}</p><h2>${escapeHtml(domain.title)}</h2><p>${escapeHtml(domain.description)}</p><div class="atlas-related"><b>Connected work</b>${works.map((publication) => `<a href="${escapeHtml(firstLink(publication))}">${escapeHtml(publication.title)} ↗</a>`).join('')}</div>`;
-      };
-
-      nodes.querySelectorAll('[data-atlas-node]').forEach((node) => {
-        node.addEventListener('pointerenter', () => activate(node.dataset.atlasNode));
-        node.addEventListener('focus', () => activate(node.dataset.atlasNode));
-        node.addEventListener('click', () => activate(node.dataset.atlasNode));
-      });
-      activate('dense-prediction');
-
-      domainList.innerHTML = data.domains.map((domain) => {
-        const works = domain.publicationIds.slice(0,4).map((id) => publicationMap.get(id)).filter(Boolean);
-        return `<article class="domain-entry reveal" id="${escapeHtml(domain.id)}"><img src="${escapeHtml(domain.image)}" alt="" loading="lazy"><div class="domain-entry-content"><span>${escapeHtml(domain.number)} · ${escapeHtml(domain.kicker)}</span><h3>${escapeHtml(domain.title)}</h3><p>${escapeHtml(domain.description)}</p><div class="domain-work-links">${works.map((publication) => `<a href="${escapeHtml(firstLink(publication))}">${escapeHtml(publication.venueShort)} · ${publication.year}</a>`).join('')}</div></div></article>`;
-      }).join('');
-      domainList.querySelectorAll('.reveal').forEach((item) => {
-        item.classList.add('visible');
-      });
-
-      if (timeline) {
-        timeline.innerHTML = data.news.map((item) => `<article class="timeline-item reveal visible"><time datetime="${escapeHtml(item.date)}">${escapeHtml(item.label)}</time><span></span><p><strong>${escapeHtml(item.title)}</strong> ${escapeHtml(item.text)}</p></article>`).join('');
-      }
-    })
-    .catch((error) => {
-      stage.querySelector('[data-atlas-context]').innerHTML = '<p class="atlas-context-label">Atlas unavailable</p><h2>Please refresh</h2><p>The shared research data could not be loaded.</p>';
-      console.error(error);
-    });
+  const stage=document.querySelector('[data-atlas-stage]');
+  if(!stage)return;
+  const escape=(value='')=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#039;");
+  const link=p=>p.links.Project||p.links.Journal||p.links.Springer||p.links.DOI||p.links.arXiv||'/publications/';
+  fetch('/assets/data/research.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json();}).then(data=>{
+    const nodes=stage.querySelector('[data-atlas-nodes]'),context=stage.querySelector('[data-atlas-context]');
+    const map=new Map(data.domains.map(d=>[d.id,d])),papers=new Map(data.publications.map(p=>[p.id,p]));
+    nodes.innerHTML=data.domains.map((d,i)=>(i===0?'<p class="atlas-phase-label">Now & next · embodied intelligence</p>':'')+(d.phase==='foundation'&&data.domains[i-1]?.phase!=='foundation'?'<p class="atlas-phase-label">The foundation · visual intelligence</p>':'')+
+      '<button type="button" class="atlas-node '+(d.phase==='foundation'?'atlas-foundation':'')+'" id="'+escape(d.id)+'" data-atlas-node="'+escape(d.id)+'" aria-pressed="false"><b>'+escape(d.number)+' / '+(d.phase==='current'?'Current work':d.phase==='direction'?'Future direction':'Vision foundation')+'</b><span>'+escape(d.title)+'</span></button>').join('');
+    const activate=id=>{
+      const d=map.get(id);if(!d)return;
+      nodes.querySelectorAll('[data-atlas-node]').forEach(b=>{b.classList.toggle('active',b.dataset.atlasNode===id);b.setAttribute('aria-pressed',String(b.dataset.atlasNode===id));});
+      const works=d.publicationIds.map(id=>papers.get(id)).filter(Boolean);
+      context.innerHTML='<p class="atlas-context-label">'+(d.phase==='current'?'Current work':d.phase==='direction'?'Future research direction':'Published research foundation')+'</p><h2>'+escape(d.title)+'</h2><p>'+escape(d.description)+'</p><img class="atlas-detail-image" src="'+escape(d.image)+'" alt="" />'+
+        (works.length?'<div class="atlas-related"><b>Related publications</b>'+works.map(p=>'<a href="'+escape(link(p))+'">'+escape(p.title)+' ↗</a>').join('')+'</div>':'<div class="atlas-related"><b>Explore the idea</b><a href="/explorer/?scene='+escape(d.scene)+'">Open the interactive illustration ↗</a><p class="atlas-disclaimer">A research direction, not a claim of completed experiments. The 3D study illustrates kinematics; it does not run a learned policy.</p></div>');
+    };
+    nodes.addEventListener('click',e=>{const b=e.target.closest('[data-atlas-node]');if(!b)return;activate(b.dataset.atlasNode);history.replaceState(null,'','#'+b.dataset.atlasNode);});
+    const fromHash=()=>activate(map.has(location.hash.slice(1))?location.hash.slice(1):data.domains[0].id);
+    window.addEventListener('hashchange',fromHash);fromHash();
+    const timeline=document.querySelector('[data-full-timeline]');
+    if(timeline)timeline.innerHTML=data.news.map(n=>'<article class="timeline-item reveal visible"><time datetime="'+escape(n.date)+'">'+escape(n.label)+'</time><span></span><p><strong>'+escape(n.title)+'</strong> '+escape(n.text)+'</p></article>').join('');
+  }).catch(error=>{stage.querySelector('[data-atlas-context]').innerHTML='<h2>Please refresh</h2><p>The research data could not be loaded.</p>';console.error(error);});
 })();

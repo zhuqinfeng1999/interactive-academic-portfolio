@@ -4,78 +4,179 @@
     "email": "hello@example.com",
     "role": "Researcher",
     "location": "Your City",
-    "affiliations": ["Your University"]
+    "affiliations": [
+      "Your University"
+    ]
   },
   "domains": [
     {
-      "id": "earth-observation",
+      "id": "agentic-robotics",
+      "title": "Agentic Robotics",
+      "kicker": "Perceive · reason · act",
+      "phase": "current",
+      "scene": "arm",
+      "description": "A space to describe your current work on agents that connect perception, reasoning and physical action.",
+      "image": "/assets/images/embodied/arm.webp?v=2.0.0",
       "number": "01",
+      "publicationIds": []
+    },
+    {
+      "id": "world-action-models",
+      "title": "World–Action Models",
+      "kicker": "Predict · plan · execute",
+      "phase": "direction",
+      "scene": "wam",
+      "description": "A future research direction: learning how actions shape the world, and using anticipated outcomes to inform planning and control.",
+      "image": "/assets/images/embodied/world-action.webp?v=2.0.0",
+      "number": "02",
+      "publicationIds": []
+    },
+    {
+      "id": "vision-language-action",
+      "title": "Vision–Language–Action",
+      "kicker": "Observation · instruction · action",
+      "phase": "direction",
+      "scene": "vla",
+      "description": "A future research direction: grounding language in visual observations and turning high-level intent into useful robotic behavior.",
+      "image": "/assets/images/embodied/vla.webp?v=2.0.0",
+      "number": "03",
+      "publicationIds": []
+    },
+    {
+      "id": "dexterous-manipulation",
+      "title": "Dexterous Manipulation",
+      "kicker": "Contact · coordination · control",
+      "phase": "direction",
+      "scene": "hand",
+      "description": "A future research direction: dexterous hands, coordinated grasping and the perception–action loop needed for precise object interaction.",
+      "image": "/assets/images/embodied/hand.webp?v=2.0.0",
+      "number": "04",
+      "publicationIds": []
+    },
+    {
+      "id": "earth-observation",
+      "number": "05",
       "title": "Earth Observation",
       "kicker": "Planetary context",
       "description": "Learning reliable representations from satellite, aerial and environmental measurements.",
       "image": "/assets/images/directions/earth-observation.svg",
-      "position": { "x": 18, "y": 25 },
-      "publicationIds": ["multimodal-foundation", "data-centric", "benchmark"]
+      "position": {
+        "x": 18,
+        "y": 25
+      },
+      "publicationIds": [
+        "multimodal-foundation",
+        "data-centric",
+        "benchmark"
+      ],
+      "phase": "foundation"
     },
     {
       "id": "spatial-intelligence",
-      "number": "02",
+      "number": "06",
       "title": "Spatial Intelligence",
       "kicker": "Geometry and action",
       "description": "Reasoning across 3D structure, motion and interaction in complex environments.",
       "image": "/assets/images/directions/spatial-intelligence.svg",
-      "position": { "x": 79, "y": 23 },
-      "publicationIds": ["world-models", "sphere-native", "benchmark"]
+      "position": {
+        "x": 79,
+        "y": 23
+      },
+      "publicationIds": [
+        "world-models",
+        "sphere-native",
+        "benchmark"
+      ],
+      "phase": "foundation"
     },
     {
       "id": "spherical-perception",
-      "number": "03",
+      "number": "07",
       "title": "Spherical Perception",
       "kicker": "Intrinsic geometry",
       "description": "Respecting non-Euclidean observation spaces in panoramic and global modeling.",
       "image": "/assets/images/directions/spherical-perception.svg",
-      "position": { "x": 51, "y": 10 },
-      "publicationIds": ["sphere-native", "world-models"]
+      "position": {
+        "x": 51,
+        "y": 10
+      },
+      "publicationIds": [
+        "sphere-native",
+        "world-models"
+      ],
+      "phase": "foundation"
     },
     {
       "id": "multimodal-learning",
-      "number": "04",
+      "number": "08",
       "title": "Multimodal Learning",
       "kicker": "Sensor synergy",
       "description": "Fusing complementary signals while preserving the structure unique to each modality.",
       "image": "/assets/images/directions/multimodal-learning.svg",
-      "position": { "x": 17, "y": 73 },
-      "publicationIds": ["multimodal-foundation", "world-models", "medical-ai"]
+      "position": {
+        "x": 17,
+        "y": 73
+      },
+      "publicationIds": [
+        "multimodal-foundation",
+        "world-models",
+        "medical-ai"
+      ],
+      "phase": "foundation"
     },
     {
       "id": "dense-prediction",
-      "number": "05",
+      "number": "09",
       "title": "Dense Prediction",
       "kicker": "Structured outputs",
       "description": "Turning pixels, voxels and points into useful semantic explanations.",
       "image": "/assets/images/directions/dense-prediction.svg",
-      "position": { "x": 50, "y": 51 },
-      "publicationIds": ["medical-ai", "sphere-native", "uncertainty"]
+      "position": {
+        "x": 50,
+        "y": 51
+      },
+      "publicationIds": [
+        "medical-ai",
+        "sphere-native",
+        "uncertainty"
+      ],
+      "phase": "foundation"
     },
     {
       "id": "robust-learning",
-      "number": "06",
+      "number": "10",
       "title": "Robust Learning",
       "kicker": "Beyond the benchmark",
       "description": "Building models that remain useful under distribution shift, scarcity and noise.",
       "image": "/assets/images/directions/robust-learning.svg",
-      "position": { "x": 80, "y": 72 },
-      "publicationIds": ["data-centric", "uncertainty", "benchmark"]
+      "position": {
+        "x": 80,
+        "y": 72
+      },
+      "publicationIds": [
+        "data-centric",
+        "uncertainty",
+        "benchmark"
+      ],
+      "phase": "foundation"
     },
     {
       "id": "scientific-ai",
-      "number": "07",
+      "number": "11",
       "title": "Scientific AI",
       "kicker": "Discovery systems",
       "description": "Connecting machine learning with interpretable structure, symmetry and scientific priors.",
       "image": "/assets/images/directions/scientific-ai.svg",
-      "position": { "x": 51, "y": 88 },
-      "publicationIds": ["scientific-discovery", "efficient-learning", "multimodal-foundation"]
+      "position": {
+        "x": 51,
+        "y": 88
+      },
+      "publicationIds": [
+        "scientific-discovery",
+        "efficient-learning",
+        "multimodal-foundation"
+      ],
+      "phase": "foundation"
     }
   ],
   "publications": [
@@ -86,14 +187,32 @@
       "venueShort": "EXAMPLE J.",
       "type": "Journal",
       "title": "Learning Structured World Models from Sparse Multimodal Observations",
-      "authors": [{"name":"Your Name","self":true},{"name":"Collaborator A"},{"name":"Collaborator B"}],
+      "authors": [
+        {
+          "name": "Your Name",
+          "self": true
+        },
+        {
+          "name": "Collaborator A"
+        },
+        {
+          "name": "Collaborator B"
+        }
+      ],
       "note": "Lead author",
       "featuredRank": 1,
       "image": "/assets/images/publications/world-models.svg",
       "imageAlt": "A world model predicting multiple agent futures",
       "summary": "An example featured publication showing how to combine a strong visual, a concise contribution statement and project links.",
-      "keywords": ["World models", "Multimodal learning", "Spatial intelligence"],
-      "links": {"Project":"/projects/featured-project/","Code":"https://github.com/yourusername/your-project"},
+      "keywords": [
+        "World models",
+        "Multimodal learning",
+        "Spatial intelligence"
+      ],
+      "links": {
+        "Project": "/projects/featured-project/",
+        "Code": "https://github.com/yourusername/your-project"
+      },
       "bibtex": "@article{yourname2026worldmodels,\n  title={Learning Structured World Models from Sparse Multimodal Observations},\n  author={Name, Your and Collaborator, A and Collaborator, B},\n  journal={Example Journal},\n  year={2026}\n}"
     },
     {
@@ -104,13 +223,27 @@
       "type": "Conference",
       "status": "Oral",
       "title": "Sphere-Native Representation Learning for Panoramic Perception",
-      "authors": [{"name":"Your Name","self":true},{"name":"Collaborator C"}],
+      "authors": [
+        {
+          "name": "Your Name",
+          "self": true
+        },
+        {
+          "name": "Collaborator C"
+        }
+      ],
       "featuredRank": 2,
       "image": "/assets/images/publications/sphere-native.svg",
       "imageAlt": "A sphere-native representation with geometric paths",
       "summary": "An example paper about respecting intrinsic geometry in panoramic observation spaces.",
-      "keywords": ["Panoramic vision", "Geometry", "Representation learning"],
-      "links": {"Project":"/publications/"},
+      "keywords": [
+        "Panoramic vision",
+        "Geometry",
+        "Representation learning"
+      ],
+      "links": {
+        "Project": "/publications/"
+      },
       "bibtex": "@inproceedings{yourname2026sphere,\n  title={Sphere-Native Representation Learning for Panoramic Perception},\n  author={Name, Your and Collaborator, C},\n  booktitle={Example Conference},\n  year={2026}\n}"
     },
     {
@@ -120,13 +253,30 @@
       "venueShort": "MED. IMAGING",
       "type": "Journal",
       "title": "Uncertainty-Aware Volumetric Segmentation with Sparse Supervision",
-      "authors": [{"name":"Collaborator D"},{"name":"Your Name","self":true},{"name":"Collaborator E"}],
+      "authors": [
+        {
+          "name": "Collaborator D"
+        },
+        {
+          "name": "Your Name",
+          "self": true
+        },
+        {
+          "name": "Collaborator E"
+        }
+      ],
       "featuredRank": 3,
       "image": "/assets/images/publications/medical-ai.svg",
       "imageAlt": "Volumetric medical segmentation with uncertainty contours",
       "summary": "An example medical-imaging project that demonstrates how the same visual system can serve a different research field.",
-      "keywords": ["Medical imaging", "Segmentation", "Uncertainty"],
-      "links": {"Project":"/projects/medical-ai/"},
+      "keywords": [
+        "Medical imaging",
+        "Segmentation",
+        "Uncertainty"
+      ],
+      "links": {
+        "Project": "/projects/medical-ai/"
+      },
       "bibtex": "@article{collaborator2025medical,\n  title={Uncertainty-Aware Volumetric Segmentation with Sparse Supervision},\n  author={Collaborator, D and Name, Your and Collaborator, E},\n  journal={Medical Imaging Journal},\n  year={2025}\n}"
     },
     {
@@ -137,13 +287,27 @@
       "type": "Preprint",
       "status": "Under review",
       "title": "Learning Symmetry-Aware Fields for Scientific Discovery",
-      "authors": [{"name":"Your Name","self":true},{"name":"Collaborator F"}],
+      "authors": [
+        {
+          "name": "Your Name",
+          "self": true
+        },
+        {
+          "name": "Collaborator F"
+        }
+      ],
       "featuredRank": 4,
       "image": "/assets/images/publications/scientific-ai.svg",
       "imageAlt": "Neural predictions over a physical lattice",
       "summary": "An example scientific-machine-learning paper built around symmetry-aware latent fields.",
-      "keywords": ["Scientific AI", "Symmetry", "Neural fields"],
-      "links": {"Project":"/publications/"},
+      "keywords": [
+        "Scientific AI",
+        "Symmetry",
+        "Neural fields"
+      ],
+      "links": {
+        "Project": "/publications/"
+      },
       "bibtex": "@article{yourname2025scientific,\n  title={Learning Symmetry-Aware Fields for Scientific Discovery},\n  author={Name, Your and Collaborator, F},\n  journal={Preprint},\n  year={2025}\n}"
     },
     {
@@ -153,13 +317,27 @@
       "venueShort": "TML",
       "type": "Journal",
       "title": "A Multimodal Foundation Model for Heterogeneous Scientific Signals",
-      "authors": [{"name":"Your Name","self":true},{"name":"Research Team"}],
+      "authors": [
+        {
+          "name": "Your Name",
+          "self": true
+        },
+        {
+          "name": "Research Team"
+        }
+      ],
       "featuredRank": 5,
       "image": "/assets/images/publications/multimodal-foundation.svg",
       "imageAlt": "Multiple scientific modalities connected to a shared latent space",
       "summary": "An example foundation-model paper spanning heterogeneous sensors and scientific domains.",
-      "keywords": ["Foundation models", "Multimodal learning", "Scientific data"],
-      "links": {"Project":"/projects/"},
+      "keywords": [
+        "Foundation models",
+        "Multimodal learning",
+        "Scientific data"
+      ],
+      "links": {
+        "Project": "/projects/"
+      },
       "bibtex": "@article{yourname2025foundation,\n  title={A Multimodal Foundation Model for Heterogeneous Scientific Signals},\n  author={Name, Your and Team, Research},\n  journal={Transactions on Machine Learning},\n  year={2025}\n}"
     },
     {
@@ -169,13 +347,27 @@
       "venueShort": "DCAI",
       "type": "Conference",
       "title": "Data Matters: Diagnosing Representation Failures under Distribution Shift",
-      "authors": [{"name":"Your Name","self":true},{"name":"Collaborator G"}],
+      "authors": [
+        {
+          "name": "Your Name",
+          "self": true
+        },
+        {
+          "name": "Collaborator G"
+        }
+      ],
       "featuredRank": 6,
       "image": "/assets/images/directions/robust-learning.svg",
       "imageAlt": "Controlled transformations for robust learning",
       "summary": "A compact example publication about data quality and distribution shift.",
-      "keywords": ["Data-centric AI", "Distribution shift", "Robustness"],
-      "links": {"Project":"/publications/"},
+      "keywords": [
+        "Data-centric AI",
+        "Distribution shift",
+        "Robustness"
+      ],
+      "links": {
+        "Project": "/publications/"
+      },
       "bibtex": "@inproceedings{yourname2024datamatters,\n  title={Data Matters: Diagnosing Representation Failures under Distribution Shift},\n  author={Name, Your and Collaborator, G},\n  booktitle={Data-Centric AI Workshop},\n  year={2024}\n}"
     },
     {
@@ -185,13 +377,27 @@
       "venueShort": "ELS",
       "type": "Conference",
       "title": "Efficient State-Space Models for High-Resolution Scientific Data",
-      "authors": [{"name":"Your Name","self":true},{"name":"Collaborator H"}],
+      "authors": [
+        {
+          "name": "Your Name",
+          "self": true
+        },
+        {
+          "name": "Collaborator H"
+        }
+      ],
       "featuredRank": 7,
       "image": "/assets/images/directions/scientific-ai.svg",
       "imageAlt": "An efficient neural field architecture",
       "summary": "A compact example publication focused on efficient long-range modeling.",
-      "keywords": ["State-space models", "Efficiency", "Scientific data"],
-      "links": {"Project":"/publications/"},
+      "keywords": [
+        "State-space models",
+        "Efficiency",
+        "Scientific data"
+      ],
+      "links": {
+        "Project": "/publications/"
+      },
       "bibtex": "@inproceedings{yourname2024efficient,\n  title={Efficient State-Space Models for High-Resolution Scientific Data},\n  author={Name, Your and Collaborator, H},\n  booktitle={Efficient Learning Symposium},\n  year={2024}\n}"
     },
     {
@@ -201,10 +407,24 @@
       "venueShort": "OWL",
       "type": "Conference",
       "title": "Calibrating Dense Predictions in Open-World Environments",
-      "authors": [{"name":"Your Name","self":true},{"name":"Collaborator I"}],
+      "authors": [
+        {
+          "name": "Your Name",
+          "self": true
+        },
+        {
+          "name": "Collaborator I"
+        }
+      ],
       "summary": "An additional publication entry without a featured image.",
-      "keywords": ["Calibration", "Open world", "Dense prediction"],
-      "links": {"Project":"/publications/"},
+      "keywords": [
+        "Calibration",
+        "Open world",
+        "Dense prediction"
+      ],
+      "links": {
+        "Project": "/publications/"
+      },
       "bibtex": "@inproceedings{yourname2024calibrating,\n  title={Calibrating Dense Predictions in Open-World Environments},\n  author={Name, Your and Collaborator, I},\n  booktitle={Open-World Learning Workshop},\n  year={2024}\n}"
     },
     {
@@ -214,23 +434,112 @@
       "venueShort": "DATASET",
       "type": "Conference",
       "title": "A Benchmark for Multimodal Reasoning under Sensor Failure",
-      "authors": [{"name":"Collaborator J"},{"name":"Your Name","self":true}],
+      "authors": [
+        {
+          "name": "Collaborator J"
+        },
+        {
+          "name": "Your Name",
+          "self": true
+        }
+      ],
       "summary": "An example benchmark entry with a project-oriented link.",
-      "keywords": ["Benchmark", "Multimodal learning", "Sensor failure"],
-      "links": {"Project":"/projects/"},
+      "keywords": [
+        "Benchmark",
+        "Multimodal learning",
+        "Sensor failure"
+      ],
+      "links": {
+        "Project": "/projects/"
+      },
       "bibtex": "@inproceedings{collaborator2023benchmark,\n  title={A Benchmark for Multimodal Reasoning under Sensor Failure},\n  author={Collaborator, J and Name, Your},\n  booktitle={Dataset Track},\n  year={2023}\n}"
     }
   ],
   "projects": [
-    {"id":"atlasworld","title":"AtlasWorld","type":"Method","eyebrow":"Multimodal world model","year":2026,"description":"A visual project template for structured prediction across sensing, geometry and action.","image":"/assets/images/publications/world-models.svg","tags":["World models","3D perception","Demo"],"href":"/projects/featured-project/"},
-    {"id":"medfield","title":"MedField","type":"Dataset","eyebrow":"Volumetric medical AI","year":2025,"description":"A benchmark-style project template for medical segmentation and calibrated uncertainty.","image":"/assets/images/publications/medical-ai.svg","tags":["Medical imaging","Dataset","Segmentation"],"href":"/projects/medical-ai/"},
-    {"id":"spherekit","title":"SphereKit","type":"Method","eyebrow":"Geometry-aware perception","year":2026,"description":"A sample method card for spherical and panoramic representation learning.","image":"/assets/images/publications/sphere-native.svg","tags":["Geometry","Panoramic vision","Code"],"href":"/publications/"},
-    {"id":"scigraph","title":"SciGraph","type":"Research map","eyebrow":"Scientific discovery","year":2025,"description":"A sample research-map card connecting symmetry, fields and data-driven discovery.","image":"/assets/images/publications/scientific-ai.svg","tags":["Scientific AI","Research map"],"href":"/research/#scientific-ai"}
+    {
+      "id": "atlasworld",
+      "title": "AtlasWorld",
+      "type": "Method",
+      "eyebrow": "Multimodal world model",
+      "year": 2026,
+      "description": "A visual project template for structured prediction across sensing, geometry and action.",
+      "image": "/assets/images/publications/world-models.svg",
+      "tags": [
+        "World models",
+        "3D perception",
+        "Demo"
+      ],
+      "href": "/projects/featured-project/"
+    },
+    {
+      "id": "medfield",
+      "title": "MedField",
+      "type": "Dataset",
+      "eyebrow": "Volumetric medical AI",
+      "year": 2025,
+      "description": "A benchmark-style project template for medical segmentation and calibrated uncertainty.",
+      "image": "/assets/images/publications/medical-ai.svg",
+      "tags": [
+        "Medical imaging",
+        "Dataset",
+        "Segmentation"
+      ],
+      "href": "/projects/medical-ai/"
+    },
+    {
+      "id": "spherekit",
+      "title": "SphereKit",
+      "type": "Method",
+      "eyebrow": "Geometry-aware perception",
+      "year": 2026,
+      "description": "A sample method card for spherical and panoramic representation learning.",
+      "image": "/assets/images/publications/sphere-native.svg",
+      "tags": [
+        "Geometry",
+        "Panoramic vision",
+        "Code"
+      ],
+      "href": "/publications/"
+    },
+    {
+      "id": "scigraph",
+      "title": "SciGraph",
+      "type": "Research map",
+      "eyebrow": "Scientific discovery",
+      "year": 2025,
+      "description": "A sample research-map card connecting symmetry, fields and data-driven discovery.",
+      "image": "/assets/images/publications/scientific-ai.svg",
+      "tags": [
+        "Scientific AI",
+        "Research map"
+      ],
+      "href": "/research/#scientific-ai"
+    }
   ],
   "news": [
-    {"date":"2026-06","label":"June 2026","title":"AtlasWorld","text":"code and interactive demo released."},
-    {"date":"2026-03","label":"March 2026","title":"Sphere-native perception","text":"selected for an oral presentation."},
-    {"date":"2025-11","label":"November 2025","title":"MedField","text":"accepted to the dataset track."},
-    {"date":"2025-08","label":"August 2025","title":"Spatialfolio","text":"portfolio redesign launched."}
+    {
+      "date": "2026-06",
+      "label": "June 2026",
+      "title": "AtlasWorld",
+      "text": "code and interactive demo released."
+    },
+    {
+      "date": "2026-03",
+      "label": "March 2026",
+      "title": "Sphere-native perception",
+      "text": "selected for an oral presentation."
+    },
+    {
+      "date": "2025-11",
+      "label": "November 2025",
+      "title": "MedField",
+      "text": "accepted to the dataset track."
+    },
+    {
+      "date": "2025-08",
+      "label": "August 2025",
+      "title": "Spatialfolio",
+      "text": "portfolio redesign launched."
+    }
   ]
 }

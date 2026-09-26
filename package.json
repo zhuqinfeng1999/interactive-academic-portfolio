@@ -1,8 +1,8 @@
 {
   "name": "spatialfolio",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "A cinematic, interactive academic portfolio template for researchers.",
+  "description": "A cinematic academic portfolio with embodied-intelligence and perception editions.",
   "type": "module",
   "scripts": {
     "serve": "node scripts/serve.mjs",

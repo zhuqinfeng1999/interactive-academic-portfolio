@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#06080c">
-  <meta name="description" content="Your Name's research connects computer vision with embodied intelligence, agentic robotics, world-action models, vision-language-action and dexterous manipulation.">
+  <meta name="description" content="An interactive academic portfolio for a researcher working across AI, scientific discovery and spatial intelligence.">
   <meta name="keywords" content="academic portfolio, researcher website, scientific AI, computer vision, interactive research website">
   <meta name="author" content="Your Name">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://yourusername.github.io/">
-  <meta property="og:title" content="Your Name — From Vision to Embodied Intelligence">
-  <meta property="og:description" content="From visual understanding to physical action. Research in agentic robotics, VLA, world-action models and dexterous manipulation.">
+  <meta property="og:title" content="Your Name — Research Portfolio">
+  <meta property="og:description" content="Research at the intersection of perception, learning and scientific discovery.">
   <meta property="og:image" content="https://yourusername.github.io/assets/images/social-preview.svg">
   <meta name="twitter:card" content="summary_large_image">
-  <title>Your Name — From Vision to Embodied Intelligence</title>
+  <title>Your Name — Research Portfolio</title>
   <link rel="canonical" href="https://yourusername.github.io/">
   <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,9 +33,9 @@
     "sameAs": ["https://github.com/yourusername"]
   }
   </script>
-  <link rel="stylesheet" href="/assets/css/embodied.css?v=2.0.0">
 </head>
 <body>
+<div class="edition-banner">Perception edition · preserved v1 interface. <a href="/">Explore the Embodied edition →</a></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="loader" data-loader aria-hidden="true">
     <div class="loader-top"><span>Your Name</span><span>Research Atlas</span></div>
@@ -66,14 +66,28 @@
   </header>
 
   <main id="main">
-    <section class="hero embodied-hero" id="home" aria-labelledby="hero-title">
-      <div class="embodied-layout">
-        <div class="hero-content"><div class="hero-copy">
-          <p class="eyebrow reveal">Spatialfolio · Embodied edition</p>
-          <h1 id="hero-title" class="hero-name reveal">Your <em>Name</em><small>RESEARCH PORTFOLIO</small></h1>
-          <p class="hero-role reveal">From vision<br>to <em>embodied<br>intelligence.</em></p>
-          <p class="hero-intro reveal">I study how embodied agents connect visual understanding, planning and physical interaction. My research brings a foundation in computer vision to agentic robotics and dexterous manipulation.</p>
-          <p class="hero-intro reveal">Ph.D. researcher at Your University, advised by Your Advisor. Replace this sample biography with your affiliations, research trajectory and verified experience.</p>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-world" role="group" aria-label="Interactive research illustration with four sensing modes">
+        <canvas data-spatial-world data-scene="hero" data-mode="pointcloud" aria-hidden="true"></canvas>
+      </div>
+      <div class="world-hud world-hud-top"><span><b data-world-status>Urban point cloud</b><small data-world-interaction>Move pointer · click to query</small></span><em>Interactive</em></div>
+      <div class="world-mode-switcher" role="group" aria-label="Homepage visualization mode">
+        <button class="active" data-world-mode="pointcloud" type="button" aria-pressed="true"><i>01</i><span>Point cloud</span></button>
+        <button data-world-mode="aerial" type="button" aria-pressed="false"><i>02</i><span>Earth observation</span></button>
+        <button data-world-mode="panoramic" type="button" aria-pressed="false"><i>03</i><span>360° vision</span></button>
+        <button data-world-mode="robotics" type="button" aria-pressed="false"><i>04</i><span>Embodied AI</span></button>
+      </div>
+      <div class="world-hud world-hud-bottom">
+        <strong data-world-title>Semantic probe</strong>
+        <span data-world-detail>Move to reveal local classes · click to expand the neighbourhood</span>
+        <span class="semantic-legend" aria-label="Semantic class colours"><i class="building"></i>Structure <i class="vegetation"></i>Nature <i class="road"></i>Surface <i class="vehicle"></i>Agent</span>
+      </div>
+      <div class="hero-content shell">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Research portfolio · Your City · 2026</p>
+          <h1 id="hero-title" class="hero-name reveal">Your <em>Name</em><small>Researcher · Scientist · Builder</small></h1>
+          <p class="hero-role reveal">I build systems that help machines understand <span class="role-rotator" data-roles="complex worlds|scientific structure|multimodal evidence|uncertain environments">complex worlds</span>.</p>
+          <p class="hero-intro reveal">I am a researcher at <strong>Your University</strong>, working at the intersection of artificial intelligence, perception and scientific discovery. Replace this paragraph with a concise account of your research question, training and collaborators.</p>
           <div class="hero-actions reveal">
             <a class="button button-primary" href="/research/">Explore the atlas <span aria-hidden="true">↗</span></a>
             <a class="button button-ghost" href="/publications/">Publications <span aria-hidden="true">↗</span></a>
@@ -86,37 +100,33 @@
             <a href="https://orcid.org/" target="_blank" rel="noreferrer"><b>iD</b>ORCID</a>
           </div>
         </div>
-        <div class="availability reveal" aria-label="Current work and opportunities">
-          <div class="opportunity"><b>SEP 2026 — PRESENT</b><p><strong>Embodied intelligence · Your institution</strong><br>Replace with your current research placement.<br>Open to internship opportunities.</p></div>
-          <div class="opportunity"><b>2027 · NEXT</b><p><strong>After graduation</strong><br>Seeking full-time research roles in academia or industry.</p></div>
-        </div></div>
-        <div class="embodied-world" data-embodied-world data-mode="arm" data-presentation="hero">
-  <div class="embodied-stage"><img class="embodied-poster" src="/assets/images/embodied/arm.webp?v=2.0.0" alt="An articulated silver robotic arm reaching toward a task object"><canvas class="embodied-canvas" tabindex="0" role="img" aria-label="Interactive robotic manipulation illustration"></canvas></div>
-  <div class="embodied-caption"><p class="scene-kicker" data-embodied-kicker>01 / Agentic robotics</p><h2 data-embodied-title>Intent, made physical.</h2><p class="scene-description" data-embodied-description>Choose an object. Watch the arm reach, grasp and place it.</p></div>
-  <span class="embodied-edition" aria-hidden="true">PERCEPTION / REASONING / ACTION</span>
-  <div class="embodied-controls">
-    <div class="embodied-modes" role="group" aria-label="Embodied research illustration"><button type="button" data-embodied-mode="arm" aria-pressed="true"><i>01</i>Robotic arm</button><button type="button" data-embodied-mode="hand" aria-pressed="false"><i>02</i>Dexterous hand</button><button type="button" data-embodied-mode="vla" aria-pressed="false"><i>03</i>VLA terminal</button><button type="button" data-embodied-mode="wam" aria-pressed="false"><i>04</i>World dynamics</button></div>
-    <div class="embodied-options embodied-instructions" role="group" aria-label="Illustrative VLA instruction"><button type="button" data-instruction="0" aria-pressed="true">Place the amber cube</button><button type="button" data-instruction="1" aria-pressed="false">Place the cyan cube</button><button type="button" data-instruction="2" aria-pressed="false">Place the silver cube</button></div>
-    <div class="embodied-options embodied-paths" role="group" aria-label="Idealized dynamics impulse"><button type="button" data-path="0" aria-pressed="true">01 · Single impulse</button><button type="button" data-path="1" aria-pressed="false">02 · Double impulse</button><button type="button" data-path="2" aria-pressed="false">03 · Reverse impulse</button></div>
-    <div class="embodied-taskbar"><button class="embodied-action" type="button" data-embodied-action>Pick &amp; place ↗</button><div class="embodied-utility"><button type="button" data-embodied-pause aria-pressed="false">Pause</button><button type="button" data-embodied-reset>Reset ↺</button></div></div>
-    <p class="embodied-status" data-embodied-readout aria-live="polite">Click an object or run a grasp · drag to orbit</p>
-    <p class="embodied-note"><span>Illustrative kinematics · not a learned policy</span><a href="/explorer/">Open explorer ↗</a></p>
-  </div>
-</div>
+        <div class="availability reveal" aria-label="Availability">
+          <div class="opportunity"><b>NOW</b><p><strong>Research collaborations</strong><br>Open to ambitious, interdisciplinary ideas.</p></div>
+          <div class="opportunity"><b>NEXT</b><p><strong>Career opportunities</strong><br>Describe the roles, locations or timelines you seek.</p></div>
+        </div>
       </div>
+      <a class="scroll-cue" href="#research"><span>Scroll to research</span><i></i></a>
     </section>
 
-    <div class="home-ticker" aria-label="Research topics"><div class="home-ticker-track"><span>Embodied Intelligence</span><i aria-hidden="true">✦</i><span>Agentic Robotics</span><i aria-hidden="true">✦</i><span>World–Action Models</span><i aria-hidden="true">✦</i><span>Vision–Language–Action</span><i aria-hidden="true">✦</i><span>Dexterous Manipulation</span><i aria-hidden="true">✦</i><span aria-hidden="true">Embodied Intelligence</span><i aria-hidden="true">✦</i><span aria-hidden="true">Agentic Robotics</span><i aria-hidden="true">✦</i><span aria-hidden="true">World–Action Models</span><i aria-hidden="true">✦</i><span aria-hidden="true">Vision–Language–Action</span><i aria-hidden="true">✦</i><span aria-hidden="true">Dexterous Manipulation</span><i aria-hidden="true">✦</i></div></div>
+    <div class="home-ticker" aria-label="Research topics"><div class="home-ticker-track">
+      <span>World Models</span><i>✦</i><span>Scientific AI</span><i>✦</i><span>Multimodal Learning</span><i>✦</i><span>3D Perception</span><i>✦</i><span>Reliable Intelligence</span><i>✦</i>
+      <span aria-hidden="true">World Models</span><i aria-hidden="true">✦</i><span aria-hidden="true">Scientific AI</span><i aria-hidden="true">✦</i><span aria-hidden="true">Multimodal Learning</span><i aria-hidden="true">✦</i><span aria-hidden="true">3D Perception</span><i aria-hidden="true">✦</i><span aria-hidden="true">Reliable Intelligence</span><i aria-hidden="true">✦</i>
+    </div></div>
 
-    <section class="section research-journey" id="research" aria-labelledby="research-title"><div class="shell">
-      <header class="section-heading section-heading-light reveal"><div><p class="eyebrow"><span></span>Research trajectory</p><h2 id="research-title">Perception is the start.<br><em>Action is the frontier.</em></h2></div><div><p>A research story can connect established visual foundations with a new direction in embodied intelligence.</p><a class="section-action section-action-dark" href="/research/">Explore the research trajectory <span>↗</span></a></div></header>
-      <div class="journey-grid">
-        <a class="direction-card reveal" href="/research/#agentic-robotics"><span class="direction-number">01 / CURRENT WORK</span><img src="/assets/images/embodied/arm.webp?v=2.0.0" alt="Articulated robotic arm reaching for a task object" loading="lazy"><div class="direction-copy"><span class="research-tag">Embodied intelligence</span><h3>Agentic<br>robotics.</h3><p>Connecting perception, reasoning and action through agents that interact with the physical world.</p></div></a>
-        <a class="direction-card reveal" href="/research/#world-action-models"><span class="direction-number">02 / RESEARCH DIRECTION</span><img src="/assets/images/embodied/world-action.webp?v=2.0.0" alt="A metallic kinetic apparatus illustrating the physical consequences of an action" loading="lazy"><div class="direction-copy"><span class="research-tag">WAM · VLA</span><h3>Models that<br>lead to action.</h3><p>Exploring world–action models and vision–language–action systems for grounded decisions.</p></div></a>
-        <a class="direction-card reveal" href="/research/#dexterous-manipulation"><span class="direction-number">03 / RESEARCH DIRECTION</span><img src="/assets/images/embodied/hand.webp?v=2.0.0" alt="Five-finger robotic hand with articulated joints" loading="lazy"><div class="direction-copy"><span class="research-tag">Contact · coordination · control</span><h3>Dexterous<br>manipulation.</h3><p>Studying how embodied intelligence can translate into coordinated, precise hand–object interaction.</p></div></a>
+    <section class="section research-overview" id="research" aria-labelledby="research-title">
+      <div class="shell">
+        <header class="section-heading section-heading-light reveal"><div><p class="eyebrow"><span></span>Research atlas</p><h2 id="research-title">One question,<br><em>many sensing spaces.</em></h2></div><div><p>Use these cards to show how your research areas connect rather than presenting them as an unrelated list.</p><a class="section-action section-action-dark" href="/research/">Open the interactive atlas <span>↗</span></a></div></header>
+        <div class="research-grid">
+          <a class="research-card reveal" data-tilt href="/research/#earth-observation"><span class="card-number">01</span><img class="research-visual" src="/assets/images/directions/earth-observation.svg" alt="Orbital sensing around a digital Earth" loading="lazy"><div class="research-copy"><span class="research-tag">Planetary context</span><h3>Earth Observation</h3><p>Learning reliable representations from satellite and aerial measurements.</p></div></a>
+          <a class="research-card reveal" data-tilt href="/research/#spatial-intelligence"><span class="card-number">02</span><img class="research-visual" src="/assets/images/directions/spatial-intelligence.svg" alt="A semantic point-cloud city" loading="lazy"><div class="research-copy"><span class="research-tag">Geometry and action</span><h3>Spatial Intelligence</h3><p>Building models that reason across 3D structure, motion and interaction.</p></div></a>
+          <a class="research-card reveal" data-tilt href="/research/#spherical-perception"><span class="card-number">03</span><img class="research-visual" src="/assets/images/directions/spherical-perception.svg" alt="Signals distributed over a sphere" loading="lazy"><div class="research-copy"><span class="research-tag">Intrinsic geometry</span><h3>Spherical Perception</h3><p>Respecting non-Euclidean observation spaces in panoramic modeling.</p></div></a>
+          <a class="research-card reveal" data-tilt href="/research/#multimodal-learning"><span class="card-number">04</span><img class="research-visual" src="/assets/images/directions/multimodal-learning.svg" alt="Multiple sensing streams converging" loading="lazy"><div class="research-copy"><span class="research-tag">Sensor synergy</span><h3>Multimodal Learning</h3><p>Fusing complementary signals without erasing their distinct structure.</p></div></a>
+          <a class="research-card reveal" data-tilt href="/research/#dense-prediction"><span class="card-number">05</span><img class="research-visual" src="/assets/images/directions/dense-prediction.svg" alt="A scene separated into semantic regions" loading="lazy"><div class="research-copy"><span class="research-tag">Structured outputs</span><h3>Dense Prediction</h3><p>Turning pixels, voxels and points into useful semantic explanations.</p></div></a>
+          <a class="research-card reveal" data-tilt href="/research/#robust-learning"><span class="card-number">06</span><img class="research-visual" src="/assets/images/directions/robust-learning.svg" alt="A family of controlled data transformations" loading="lazy"><div class="research-copy"><span class="research-tag">Beyond the benchmark</span><h3>Robust Learning</h3><p>Designing systems that remain useful under shift, scarcity and noise.</p></div></a>
+          <a class="research-card reveal" data-tilt href="/research/#scientific-ai"><span class="card-number">07</span><img class="research-visual" src="/assets/images/directions/scientific-ai.svg" alt="A neural field over a scientific lattice" loading="lazy"><div class="research-copy"><span class="research-tag">Discovery systems</span><h3>Scientific AI</h3><p>Connecting machine learning with interpretable scientific structure.</p></div></a>
+        </div>
       </div>
-      <div class="foundation-strip reveal"><div class="foundation-intro"><p class="eyebrow">The foundation · computer vision</p><h3>Learning to see,<br>before learning to act.</h3><p>Keep your established research visible. These sample topics show how earlier work can support a new direction.</p></div><div class="foundation-links"><a href="/research/#earth-observation"><img src="/assets/images/directions/earth-observation.svg" alt="" loading="lazy"><span>Earth Observation<b>↗</b></span></a><a href="/research/#spatial-intelligence"><img src="/assets/images/directions/spatial-intelligence.svg" alt="" loading="lazy"><span>Spatial Intelligence<b>↗</b></span></a><a href="/research/#spherical-perception"><img src="/assets/images/directions/spherical-perception.svg" alt="" loading="lazy"><span>Spherical Perception<b>↗</b></span></a></div></div>
-    </div></section>
+    </section>
 
     <section class="section publications-section" id="publications" aria-labelledby="publications-title">
       <div class="shell">
@@ -161,6 +171,7 @@
   </main>
 
   <script src="/assets/js/cosmic.js?v=1" defer></script>
-  <script type="module" src="/assets/js/robot-stage.js?v=2.0.0"></script>
+  <script src="/assets/js/spatial-cloud.js?v=20260912-review-5" defer></script>
+  <script src="/assets/js/spatial-world.js?v=20260908-shared-2" defer></script>
 </body>
 </html>

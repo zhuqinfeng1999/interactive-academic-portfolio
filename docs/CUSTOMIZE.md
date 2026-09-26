@@ -50,7 +50,7 @@ Edit `assets/data/research.json`.
 
 ### Research directions
 
-Each domain needs a unique `id`, display number, title, kicker, description, image, atlas position and a list of publication IDs.
+Each domain needs a unique `id`, display number, title, kicker, description, image, a `phase` (`current`, `direction` or `foundation`) and a list of publication IDs. Future directions can have an empty publication list and a `scene` value (`arm`, `hand`, `vla` or `wam`).
 
 ```json
 {
@@ -60,12 +60,12 @@ Each domain needs a unique `id`, display number, title, kicker, description, ima
   "kicker": "Clinical evidence",
   "description": "Learning reliable representations from multimodal clinical images.",
   "image": "/assets/images/directions/medical-imaging.svg",
-  "position": { "x": 18, "y": 25 },
+  "phase": "foundation",
   "publicationIds": ["your-paper-id"]
 }
 ```
 
-If you change domain IDs, also update the `edges` array and the central-node ID in `assets/js/research-atlas.js`.
+Domain selection and deep links are generated from the data. There is no hardcoded edge array or central node to maintain. Update homepage links if you rename a domain ID.
 
 ### Publications
 
@@ -160,6 +160,18 @@ Start with the custom properties at the top of `assets/css/cosmic.css`. Keep suf
 Avoid adding a new card, border or animation merely to fill space. Spatialfolio works best when motion explains a research concept and when light/dark section changes separate information layers.
 
 ## 9. Customize the interactive scene
+
+**Embodied edition:** edit `assets/js/robot-stage.js` and `assets/css/embodied.css`.
+The distinct rover and dynamics studies live in `assets/js/robot-studies.js`.
+Keep terminal commands on the fixed allowlist; this demo does not execute code
+or contact an inference service. Update all four posters after visual changes.
+The instance is available at `container.robotStage` on `[data-embodied-world]`;
+methods include `setMode()`, `activate()`, `reset()` and `request()`.
+Keep the `data-embodied-*` HTML hooks, four modes, keyboard controls, static
+posters and visibility/reduced-motion handling. Geometry, joint frames and motion
+live in `assets/models/`. Preserve their independent Apache-2.0 licenses.
+
+**Perception edition only — legacy interface:**
 
 Shared urban geometry and all four GPU modes are in `assets/js/spatial-cloud.js`;
 interface coordination and the Canvas fallback are in `assets/js/spatial-world.js`. Shared visual refinements

@@ -21,7 +21,7 @@
     const loaderCount = loader.querySelector('[data-loader-count]');
     const loaderProgress = loader.querySelector('[data-loader-progress]');
     const loaderWord = loader.querySelector('[data-loader-word]');
-    const words = ['Perceive', 'Represent', 'Understand'];
+    const words = document.querySelector('[data-embodied-world]') ? ['Perceive', 'Reason', 'Act'] : ['Perceive', 'Represent', 'Understand'];
     const duration = reducedMotion ? 120 : 1200;
     const startedAt = performance.now();
     let activeWord = 0;

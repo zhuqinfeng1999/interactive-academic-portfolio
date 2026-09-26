@@ -4,145 +4,108 @@
 
 # Spatialfolio — Interactive Academic Portfolio
 
-A cinematic, interactive academic portfolio template for researchers who want their website to explain a **research system**, not merely reproduce a CV.
+**Make your research feel alive.** A cinematic academic website template with interactive 3D research studies, an editorial publication layout and a searchable research library. Static files. No build step.
 
 <p align="center">
-  <strong><a href="https://zhuqinfeng1999.github.io/">View Qinfeng Zhu's live research portfolio ↗</a></strong><br>
-  <sub>The production reference behind Spatialfolio · spatial intelligence, 3D vision, remote sensing and panoramic perception</sub>
+  <strong><a href="https://zhuqinfeng1999.github.io/">Explore Qinfeng Zhu’s personal website ↗</a></strong><br>
+  <sub>The live portfolio behind Spatialfolio — from computer vision to embodied intelligence</sub>
 </p>
 
-<p align="center"><a href="docs/CUSTOMIZE.md">Customization guide</a> · <a href="docs/CODEX_VISUALS.md">Codex visual guide</a> · <a href="README.zh-CN.md">中文说明</a></p>
+[Customization](docs/CUSTOMIZE.md) · [Design with Codex](docs/CODEX_VISUALS.md) · [Edition guide](docs/EDITIONS.md) · [中文说明](README.zh-CN.md)
 
-> The live reference is Qinfeng Zhu's production portfolio. This repository ships fictional sample content so you can safely replace it with your own work.
+> **2.0.0 · Embodied edition.** All sample names, institutions, placement dates and publications in this template are fictional. Replace them with your own verified information before publishing.
 
-## Why Spatialfolio
+## Choose your research edition
 
-- **Interactive research hero** with one richly detailed WebGL district, four connected sensing perspectives, and pointer, touch and keyboard interactions.
-- **Connected research atlas** driven by one structured JSON file.
-- **Searchable publication library** with year/type filters and one-click BibTeX copying.
-- **Project index and long-form project pages** for methods, datasets and research maps.
-- **Command palette** for fast search across pages, topics, projects and papers.
-- **Zero-build deployment**: semantic HTML, custom CSS and vanilla JavaScript work directly on GitHub Pages.
-- **Responsive and considerate**: keyboard access, meaningful fallback content and reduced-motion support are built in.
-- **Designed for adaptation**: replace the visual field with a Codex-generated scene for your discipline.
+| Edition | Best suited to | Included visual |
+| --- | --- | --- |
+| **Embodied — current edition** | Embodied intelligence, agentic robotics, WAM, VLA and dexterous manipulation | Reversible cube stacking, a Shadow hand, a VLA-style rover terminal and an idealized dynamics study |
+| **Perception — previous design** | Computer vision, remote sensing, 3D and panoramic perception | One interactive urban district with four connected sensing views |
+
+The current homepage uses the Embodied edition. Preview the previous homepage at `/editions/perception/`. For the complete prior release, use the [pinned Perception source](https://github.com/zhuqinfeng1999/interactive-academic-portfolio/tree/5a9e7d3baf8532922c6961b75143788e00440742). See [CHANGELOG](CHANGELOG.md) for version history.
 
 ## Preview
 
-![Spatialfolio homepage with an interactive urban point-cloud scene](docs/assets/screenshots/hero.jpg)
+![Embodied edition homepage with a metallic robotic arm](docs/assets/screenshots/embodied-hero.png)
 
-<table>
-  <tr>
-    <td width="50%"><img src="docs/assets/screenshots/research.jpg" alt="Spatialfolio research direction cards"><br><sub>Research directions with original scientific illustrations</sub></td>
-    <td width="50%"><img src="docs/assets/screenshots/publications.jpg" alt="Spatialfolio featured publication layout"><br><sub>Editorial featured publications with integrated figures</sub></td>
-  </tr>
-  <tr>
-    <td width="50%"><img src="docs/assets/screenshots/projects.jpg" alt="Spatialfolio project portfolio"><br><sub>Project stories for methods, datasets and research maps</sub></td>
-    <td width="50%"><img src="docs/assets/screenshots/explorer.jpg" alt="Spatialfolio full-screen interactive explorer"><br><sub>A full-screen explorer with discipline-specific sensing modes</sub></td>
-  </tr>
-</table>
+![Embodied research directions and visual-perception foundations](docs/assets/screenshots/embodied-research.png)
+
+| Language → action | Predict → release |
+| --- | --- |
+| ![Code-style terminal commanding a mobile robot](docs/assets/screenshots/embodied-terminal.png) | ![Interactive metallic kinetic apparatus](docs/assets/screenshots/embodied-dynamics.png) |
+
+The arm and hand use real, Apache-2.0-licensed geometry with CC0 studio lighting. The rover and kinetic apparatus are original procedural geometry. These are **illustrations, not live policy inference or experimental results**. Asset names identify the hardware and do not imply manufacturer endorsement.
+
+The arm performs one opening grasp, then lets visitors stack three cubes and return them from the top. The terminal runs a fixed set of navigation instructions with synchronized observe → ground → act → verify feedback. The dynamics study previews idealized momentum transfer; it is not a learned WAM. Automatic motion respects reduced-motion settings.
+
+Hover near a cube to see its illuminated outline and the available action. In the dynamics view, click to release or replay; a click while paused continues the same motion. **Play** starts an idle study, **Pause** freezes it, and **Resume** continues without jumping to the end. Choosing another impulse immediately launches that variation. Under reduced motion, actions show a static result by default; pressing **Play** explicitly opts into animation for that scene until reset or switching scenes.
+
+## Features
+
+- Four interactive studies with object selection, articulated motion, pointer inspection, touch and keyboard controls.
+- Clear separation between current work, future directions and published research foundations.
+- Searchable publications with year/type filters and BibTeX copying.
+- Complete homepage publication list, project pages and research timeline.
+- Site-wide command palette.
+- Google Fonts, dark/light editorial sections and integrated publication figures.
+- Reduced motion, pause/reset, offscreen suspension and static model posters when 3D is unavailable.
+- Local model assets: no external 3D service or runtime model CDN.
 
 ## Quick start
 
-1. Click **Use this template** on GitHub.
-2. Name the new repository `yourusername.github.io` for a user site, or choose any name for a project site.
-3. Replace the identity placeholders in the HTML files and update `assets/data/research.json`.
-4. In **Settings → Pages**, deploy from your default branch and repository root.
-5. Run `npm run validate` before publishing. No package installation is required.
-
-Local preview:
+1. Choose **Use this template** and name the repository `yourusername.github.io`.
+2. Replace the identity and biography in the HTML; edit `assets/data/research.json`.
+3. Add your verified papers, project links, CV and figures. Keep future interests separate from completed work.
+4. Run the checks below, then enable **Settings → Pages → deploy from branch → repository root**.
 
 ```bash
 npm run serve
-```
-
-Open `http://127.0.0.1:4173/`.
-
-## Customize the content
-
-| What | Where |
-| --- | --- |
-| Name, biography, contact links, SEO metadata | HTML files in `/`, `research/`, `publications/`, `projects/`, and `explorer/` |
-| Research areas, papers, projects and news | `assets/data/research.json` |
-| Homepage editorial selection | `index.html` |
-| Colors, typography and layouts | `assets/css/cosmic.css` and `assets/css/subpages.css` |
-| Shared urban geometry, four GPU sensing modes and interaction controls | `assets/js/spatial-cloud.js` |
-| Scene coordination, interface hooks and Canvas 2D fallback | `assets/js/spatial-world.js` |
-| Shared visual refinement layer (loaded last) | `assets/css/refinement.css` |
-| Research illustrations | `assets/images/directions/` and `assets/images/publications/` |
-
-The detailed checklist in [docs/CUSTOMIZE.md](docs/CUSTOMIZE.md) covers identity replacement, publication metadata, project pages, SEO, accessibility and deployment.
-
-## Make the interaction belong to your research
-
-The included point-cloud, Earth-observation, spherical and embodied-AI modes are examples—not a visual identity you must keep.
-
-One synthetic district connects all four views: inspect architectural structure, move and hold a regional sampling footprint, direct a panoramic gaze, or send a small agent along the boulevard. The geometry, palette and camera transitions stay coherent. These are illustrative interactions—not sensor measurements or model predictions.
-
-All modes support drag-to-orbit, optional semantic color, pause and reset. Arrow keys control the active mode; Enter selects an object, holds/releases a sample or gaze, or confirms a navigation target. Space pauses and R resets. Geometry stays local; reduced motion and offscreen rendering suspension are built in. WebGL is optional, with a Canvas 2D fallback.
-
-Ask Codex to study your research concepts and redesign `assets/js/spatial-cloud.js` (shared geometry and all four sensing modes), updating `assets/js/spatial-world.js` where interface labels or the compatibility renderer need to change. Preserve the public interface and accessibility constraints. The guide includes ready-to-use briefs for:
-
-- world models and autonomous systems;
-- medical image segmentation and volumetric uncertainty;
-- condensed-matter physics, lattices and spin textures;
-- remote sensing, robotics and multimodal scientific data.
-
-See [docs/CODEX_VISUALS.md](docs/CODEX_VISUALS.md).
-
-## Attribution requirement
-
-Public websites built substantially from Spatialfolio must keep a visible footer credit linking to this repository. The template already includes:
-
-```html
-<a href="https://github.com/zhuqinfeng1999/interactive-academic-portfolio">
-  Built with Spatialfolio · View the source on GitHub ↗
-</a>
-```
-
-The included credit is a compact GitHub provenance card: visible enough to make the source discoverable, but visually subordinate to the portfolio itself. You may restyle or reword it, but the source link must remain readable and accessible. See [LICENSE](LICENSE) for the complete terms.
-
-## Project structure
-
-```text
-.
-├── index.html                     # Homepage
-├── research/                     # Interactive research atlas
-├── publications/                 # Searchable publication library
-├── projects/                     # Project index and detail pages
-├── explorer/                     # Full-screen interactive scene
-├── assets/
-│   ├── css/                      # Visual system and responsive layouts
-│   ├── data/research.json        # Shared structured research content
-│   ├── images/                   # Original SVG example visuals
-│   └── js/                       # UI, atlas, library and sensing engine
-├── docs/                         # English and Chinese customization guides
-└── scripts/                      # Dependency-free preview and validation
-```
-
-## Validation
-
-```bash
 npm run validate
 ```
 
-The validator checks JSON integrity, internal assets and routes, filename case, duplicate HTML IDs, publication/domain relationships and the required attribution link.
+Open `http://127.0.0.1:4173/`. No package installation is required. The template uses root-relative links; deployment under a repository subpath needs a base-path adaptation first.
 
-## Repository discoverability
+## Where to customize
 
-Recommended GitHub **About** text:
+| Content | File |
+| --- | --- |
+| Name, biography, availability, links and SEO | HTML pages, starting with `index.html` |
+| Topics, all publications, projects and news | `assets/data/research.json` |
+| Homepage editorial selection | `index.html` |
+| Scene controls, stacking and shared renderer | `assets/js/robot-stage.js` |
+| Rover, preset navigation and idealized dynamics | `assets/js/robot-studies.js` |
+| Model geometry and joint-limited motion | `assets/models/` |
+| Embodied layout | `assets/css/embodied.css` |
+| Base design and publication treatments | `assets/css/cosmic.css`, `subpages.css`, `refinement.css` |
+| Previous Perception renderer | `assets/js/spatial-cloud.js`, `spatial-world.js` |
 
-> A cinematic, interactive academic portfolio template for researchers, with connected WebGL sensing scenes, a research atlas, searchable publications and zero-build GitHub Pages deployment.
+The hand loads after the arm, and only one renderer is used. Compressed robot meshes total approximately 4 MB; the HDR environment and static posters are stored locally. Test real loading and GPU performance before adding heavier assets.
 
-Recommended topics:
+## Make the scene belong to your research
 
-`academic-website` · `academic-portfolio` · `portfolio-template` · `researcher-portfolio` · `github-pages` · `interactive-website` · `canvas-animation` · `research-website` · `vanilla-javascript` · `non-commercial`
+The new edition is a starting point for embodied-intelligence researchers, not a requirement to use robotics imagery. Ask Codex to study your scientific question, propose a visual concept and implement a meaningful interaction:
 
-## Contributing
+- **World models:** compare predicted futures, then execute a selected action.
+- **Medical imaging:** inspect a segmented volume and its uncertainty, with no patient data.
+- **Condensed-matter physics:** explore lattice structure, spin alignment and a phase parameter.
+- **Computer vision:** adapt the retained Perception edition.
 
-Bug fixes, accessibility improvements and discipline-specific visual modes are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+Keep controls understandable, use licensed assets and distinguish an illustration from measured results. Detailed prompts and technical contracts are in [the Codex guide](docs/CODEX_VISUALS.md).
 
-## License
+## Attribution and license
 
-Spatialfolio is released under the **Spatialfolio Non-Commercial Attribution License 1.0**. Personal, academic, educational, research, charitable, and nonprofit use is permitted with attribution. Commercial use—including paid website work, resale, commercial product integration, and company marketing—requires prior written permission from Qinfeng Zhu.
+Keep the visible footer link to [this repository](https://github.com/zhuqinfeng1999/interactive-academic-portfolio). The included **Built with Spatialfolio** GitHub credit is designed to be readable without competing with your research.
 
-Created by [Qinfeng Zhu](https://zhuqinfeng1999.github.io/).
+The original website code and design use the **Spatialfolio Non-Commercial Attribution License 1.0**. Personal, academic, educational, research and nonprofit use is allowed with attribution. Paid client work, resale, company marketing and other commercial use require written permission. See [LICENSE](LICENSE).
+
+Third-party components retain their own licenses: Three.js (MIT), Franka and Shadow model assets (Apache-2.0), and Poly Haven lighting (CC0). Details: [asset notices](assets/models/NOTICE.md).
+
+## GitHub About and topics
+
+Suggested About:
+
+> A cinematic academic portfolio template with interactive 3D robotics, an embodied-intelligence edition, research atlas and searchable publications. Zero-build GitHub Pages.
+
+Topics: `academic-website` · `academic-portfolio` · `portfolio-template` · `embodied-ai` · `robotics` · `threejs` · `github-pages` · `research-website` · `non-commercial`
+
+Created by [Qinfeng Zhu](https://zhuqinfeng1999.github.io/). Contributions welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).

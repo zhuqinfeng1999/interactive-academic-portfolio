@@ -40,7 +40,7 @@ https://yourusername.github.io/
 
 ### 研究方向
 
-每个方向需要唯一 `id`、编号、标题、短标签、说明、图片、图谱坐标和关联论文 ID。
+每个方向需要唯一 `id`、编号、标题、短标签、说明、图片、`phase` 和关联论文 ID。`phase` 为 `current`（当前）、`direction`（未来）或 `foundation`（已有基础）；未来方向可以没有论文，并通过 `scene` 指定对应交互场景。
 
 ```json
 {
@@ -50,12 +50,12 @@ https://yourusername.github.io/
   "kicker": "Clinical evidence",
   "description": "Learning reliable representations from multimodal clinical images.",
   "image": "/assets/images/directions/medical-imaging.svg",
-  "position": { "x": 18, "y": 25 },
+  "phase": "foundation",
   "publicationIds": ["your-paper-id"]
 }
 ```
 
-如果修改了研究方向 ID，还需要同步修改 `assets/js/research-atlas.js` 中的 `edges` 连接关系和中心节点 ID。
+新版图谱由数据生成，没有需要手工维护的连线数组和中心节点；改名时同步更新首页的锚点链接即可。
 
 ### 论文
 
@@ -144,6 +144,16 @@ Research news 建议只保留三到四条最重要的接收、获奖、开源或
 不要为了填空而不断增加边框、卡片和动画。Spatialfolio 最适合用“有意义的动效”解释研究概念，并通过深浅区块切换区分信息层级。
 
 ## 9. 定制科研交互动效
+
+**具身智能版：**修改 `assets/js/robot-stage.js` 和 `assets/css/embodied.css`。
+移动机器人与动力学装置位于 `assets/js/robot-studies.js`。终端使用固定指令列表，
+不执行任意代码，也不调用推理服务。更改场景后同步更新四张静态后备图。
+实例位于 `[data-embodied-world]` 元素的 `robotStage` 属性，保留
+`setMode()`、`activate()`、`reset()` 与 `data-embodied-*` 控件。
+模型及关节运动位于 `assets/models/`，第三方 Apache-2.0 许可必须一并保留。
+测试四个模式、键盘、触控、暂停、减少动态效果和静态后备图。
+
+**以下接口仅适用于保留的 Perception 感知版：**
 
 共享城市几何和四种 GPU 模式位于 `assets/js/spatial-cloud.js`，界面协调与 Canvas 兼容回退位于 `assets/js/spatial-world.js`。全站视觉优化层 `assets/css/refinement.css` 在基础样式之后加载。
 精选论文的原图为深色时，保留 `figure` 上的 `paper-visual-dark` 类；换成白底论文图时移除该类，即可使用低亮度、柔和边缘的深色卡片样式。不再反转科研图的颜色，仅适度降低亮度和饱和度，使图片边缘融入背景；原图文件保持不变。

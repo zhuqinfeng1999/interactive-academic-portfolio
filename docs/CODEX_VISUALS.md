@@ -17,7 +17,39 @@ Give Codex:
 
 Avoid requests such as “make it more futuristic” without explaining the research concept. Ask for a visual hypothesis first, then implementation.
 
-## Required technical contract
+## Embodied edition contract
+
+The current renderer is `assets/js/robot-stage.js`, with local Three.js, licensed
+robot meshes and HDR lighting. Preserve `[data-embodied-world]`,
+`container.robotStage`, `setMode(mode)`, `activate()`, `reset()` and the
+`data-embodied-*` controls. Modes: `arm`, `hand`, `vla`, `wam`.
+
+`robot-studies.js` contains the original rover and idealized dynamics apparatus.
+The terminal accepts only fixed preset instructions: keep its displayed phases
+synchronized to actual scene progress, and never imply live model inference.
+The `wam` view illustrates physical prediction with ideal equal-mass momentum
+transfer, not a learned model. Stacking tracks in `models/panda/stacking.json`
+preserve support order; return the top cube first. Opening auto-grasp runs once,
+only when visible and reduced motion is off, and yields to visitor interaction.
+
+Hover is a preview, not a mutation: outlines and tooltips identify a nearby cube,
+but moving the pointer must not move the cube or change stack order. Playback is
+separate from render scheduling: Play starts an idle action, Pause freezes the
+current pose, and Resume continues it. Do not treat a manual pause as a request
+for a static result. Only reduced-motion defaults do that; explicit Play can opt
+into animation until reset or mode change.
+
+Keep scene selection explicit, actions understandable and all controls outside
+the canvas accessible. Respect pause, reduced motion and offscreen suspension.
+Test the geometry, camera, contact poses and performance in a real browser.
+Do not replace an articulated model with a rotating slideshow. Retain asset
+licenses and label illustrative motion honestly.
+
+For a new embodied concept, ask Codex to propose a task, entity, pointer response,
+click outcome and static fallback before implementation. Model assets are local;
+new third-party downloads require a verified redistributable license.
+
+## Perception edition contract (legacy)
 
 The shared urban geometry and all four GPU modes live in `assets/js/spatial-cloud.js`;
 interface coordination and the Canvas 2D compatibility renderer live in `assets/js/spatial-world.js`.
