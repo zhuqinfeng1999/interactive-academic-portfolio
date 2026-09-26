@@ -39,6 +39,11 @@ current pose, and Resume continues it. Do not treat a manual pause as a request
 for a static result. Only reduced-motion defaults do that; explicit Play can opt
 into animation until reset or mode change.
 
+In the dynamics scene, click or Enter starts an idle rollout, pauses a moving
+one and resumes a frozen one without changing the impulse or clock. A drag
+must not toggle playback. Only an explicit replay or impulse selection starts
+a fresh rollout. Test this same contract on the homepage and Explorer.
+
 Keep scene selection explicit, actions understandable and all controls outside
 the canvas accessible. Respect pause, reduced motion and offscreen suspension.
 Test the geometry, camera, contact poses and performance in a real browser.

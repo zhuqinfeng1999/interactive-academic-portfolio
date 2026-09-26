@@ -1,6 +1,6 @@
 import * as T from '../vendor/three/three.module.js';
 import { RGBELoader } from '../vendor/three/RGBELoader.js';
-import { RoverStudy, DynamicsStudy } from './robot-studies.js?v=2.0.0';
+import { RoverStudy, DynamicsStudy } from './robot-studies.js?v=2.0.1';
 
 // Real robot geometry; illustrative kinematics only. See assets/models/NOTICE.md.
 const MODES={
@@ -146,8 +146,22 @@ class RobotStage{
     this.canvas.addEventListener('pointermove',e=>{const r=this.canvas.getBoundingClientRect();this.pointerTarget.set((e.clientX-r.left)/r.width-.5,(e.clientY-r.top)/r.height-.5);this.hoverPointer.set((e.clientX-r.left)/r.width*2-1,1-(e.clientY-r.top)/r.height*2);this.pointerInside=e.pointerType!=='touch';if(this.drag){const dx=e.clientX-this.drag.x,dy=e.clientY-this.drag.y;if(Math.hypot(dx,dy)>6)this.drag.moved=true;if(this.drag.moved)this.orbit.set(clamp(this.drag.ox+dx*.003,-1,1),clamp(this.drag.oy+dy*.002,-.2,.25));}this.request();});
     this.canvas.addEventListener('pointerleave',()=>{this.pointerInside=false;this.setHovered(-1);this.pointerTarget.set(0,0);this.request();});
     this.canvas.addEventListener('pointercancel',()=>{this.drag=null;});
-    this.canvas.addEventListener('pointerup',e=>{if(this.drag&&!this.drag.moved&&this.ready&&(!this.running||this.mode==='wam')){let act=true;const r=this.canvas.getBoundingClientRect();this.ndc.set((e.clientX-r.left)/r.width*2-1,1-(e.clientY-r.top)/r.height*2);this.ray.setFromCamera(this.ndc,this.camera);if(this.mode==='arm'){const hits=this.ray.intersectObjects(this.objects);const index=hits.length?hits[0].object.userData.index:this.hovered;if(index>=0)this.selected=index;else act=false;}else if(this.mode==='wam'&&!(this.running&&this.paused)){const hits=this.ray.intersectObjects(this.dynamics.balls);if(hits.length)this.pathIndex=hits[0].object.userData.impulse;}if(act)this.activate({restart:this.mode==='wam'&&!this.paused});}this.drag=null;if(this.canvas.hasPointerCapture(e.pointerId))this.canvas.releasePointerCapture(e.pointerId);});
-    this.canvas.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Enter',' ','r','R'].includes(e.key))return;e.preventDefault();if(e.key==='Enter')this.activate({restart:this.mode==='wam'&&!this.paused});else if(e.key===' ')this.togglePlayback();else if(e.key.toLowerCase()==='r')this.reset();else if(e.key==='ArrowUp'||e.key==='ArrowDown')this.orbit.y=clamp(this.orbit.y+(e.key==='ArrowUp'?-.06:.06),-.2,.25);else if(this.mode==='hand'){this.orbit.x=clamp(this.orbit.x+(e.key==='ArrowLeft'?-.15:.15),-1,1);}else if(!this.running){const delta=e.key==='ArrowRight'?1:2;if(this.mode==='arm'){this.selected=(this.selected+delta)%3;this.focusTarget();}else if(this.mode==='vla'){this.commandIndex=(this.commandIndex+delta)%3;this.terminal();this.rover.setRoute(this.commandIndex);}else{this.pathIndex=(this.pathIndex+delta)%3;this.dynamics.choose(this.pathIndex);}this.sync();}this.request();});
+    this.canvas.addEventListener('pointerup',e=>{
+      if(this.drag&&!this.drag.moved&&this.ready){
+        // A running rollout owns its impulse and clock. Scene clicks only
+        // pause/resume it; replay and impulse selection are explicit controls.
+        if(this.mode==='wam'&&this.running)this.togglePlayback();
+        else if(!this.running){
+          let act=true;const r=this.canvas.getBoundingClientRect();
+          this.ndc.set((e.clientX-r.left)/r.width*2-1,1-(e.clientY-r.top)/r.height*2);this.ray.setFromCamera(this.ndc,this.camera);
+          if(this.mode==='arm'){const hits=this.ray.intersectObjects(this.objects);const index=hits.length?hits[0].object.userData.index:this.hovered;if(index>=0)this.selected=index;else act=false;}
+          else if(this.mode==='wam'){const hits=this.ray.intersectObjects(this.dynamics.balls);if(hits.length)this.pathIndex=hits[0].object.userData.impulse;}
+          if(act)this.activate();
+        }
+      }
+      this.drag=null;if(this.canvas.hasPointerCapture(e.pointerId))this.canvas.releasePointerCapture(e.pointerId);
+    });
+    this.canvas.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Enter',' ','r','R'].includes(e.key))return;e.preventDefault();if(e.key==='Enter'){if(this.mode==='wam'&&this.running)this.togglePlayback();else this.activate();}else if(e.key===' ')this.togglePlayback();else if(e.key.toLowerCase()==='r')this.reset();else if(e.key==='ArrowUp'||e.key==='ArrowDown')this.orbit.y=clamp(this.orbit.y+(e.key==='ArrowUp'?-.06:.06),-.2,.25);else if(this.mode==='hand'){this.orbit.x=clamp(this.orbit.x+(e.key==='ArrowLeft'?-.15:.15),-1,1);}else if(!this.running){const delta=e.key==='ArrowRight'?1:2;if(this.mode==='arm'){this.selected=(this.selected+delta)%3;this.focusTarget();}else if(this.mode==='vla'){this.commandIndex=(this.commandIndex+delta)%3;this.terminal();this.rover.setRoute(this.commandIndex);}else{this.pathIndex=(this.pathIndex+delta)%3;this.dynamics.choose(this.pathIndex);}this.sync();}this.request();});
     this.canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();this.stop();this.ready=false;this.container.classList.remove('is-ready');this.container.classList.add('is-fallback');this.status('The 3D view is recovering.');});
     this.canvas.addEventListener('webglcontextrestored',()=>{this.ready=Boolean(this.arm);this.container.classList.remove('is-fallback');this.container.classList.add('is-ready');this.reset();});
   }
@@ -170,9 +184,9 @@ class RobotStage{
     if(!MODES[mode])mode='arm';this.autoPending=false;this.mode=mode;this.container.dataset.mode=mode;const info=MODES[mode];
     this.container.querySelectorAll('[data-embodied-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.embodiedMode===mode)));
     this.container.querySelector('[data-embodied-kicker]').textContent=info.kicker;this.container.querySelector('[data-embodied-title]').textContent=info.title;this.container.querySelector('[data-embodied-description]').textContent=info.description;this.action.textContent=info.action+' ↗';
-    this.canvas.setAttribute('aria-label',info.description+' Drag to orbit; arrow keys select or inspect; Enter acts; Space pauses; R resets.');
+    this.canvas.setAttribute('aria-label',info.description+' Drag to orbit; arrow keys select or inspect; '+(mode==='wam'?'click or Enter releases, pauses or resumes; ':'Enter acts; ')+'Space toggles playback; R resets.');
     this.container.querySelector('.embodied-note > span').textContent=mode==='wam'?'Idealized dynamics · not a learned world model':mode==='vla'?'Preset navigation · not live VLA inference':'Illustrative kinematics · not a learned policy';
-    const poster=this.container.querySelector('.embodied-poster');if(poster){poster.src=resource('../images/embodied/'+({arm:'arm',hand:'hand',vla:'vla',wam:'world-action'}[mode])+'.webp?v=2.0.0');poster.alt=info.description;}
+    const poster=this.container.querySelector('.embodied-poster');if(poster){poster.src=resource('../images/embodied/'+({arm:'arm',hand:'hand',vla:'vla',wam:'world-action'}[mode])+'.webp?v=2.0.1');poster.alt=info.description;}
     if(!this.ready)return;
     this.container.classList.remove('is-fallback');this.container.classList.add('is-ready');
     this.arm.root.visible=mode==='arm';this.table.visible=mode==='arm';if(this.hand)this.hand.root.visible=mode==='hand';this.rover.root.visible=mode==='vla';this.dynamics.root.visible=mode==='wam';this.reset();

@@ -13,7 +13,7 @@
 
 [Customization](docs/CUSTOMIZE.md) · [Design with Codex](docs/CODEX_VISUALS.md) · [Edition guide](docs/EDITIONS.md) · [中文说明](README.zh-CN.md)
 
-> **2.0.0 · Embodied edition.** All sample names, institutions, placement dates and publications in this template are fictional. Replace them with your own verified information before publishing.
+> **2.0.1 · Embodied edition.** All sample names, institutions, placement dates and publications in this template are fictional. Replace them with your own verified information before publishing.
 
 ## Choose your research edition
 
@@ -38,11 +38,12 @@ The arm and hand use real, Apache-2.0-licensed geometry with CC0 studio lighting
 
 The arm performs one opening grasp, then lets visitors stack three cubes and return them from the top. The terminal runs a fixed set of navigation instructions with synchronized observe → ground → act → verify feedback. The dynamics study previews idealized momentum transfer; it is not a learned WAM. Automatic motion respects reduced-motion settings.
 
-Hover near a cube to see its illuminated outline and the available action. In the dynamics view, click to release or replay; a click while paused continues the same motion. **Play** starts an idle study, **Pause** freezes it, and **Resume** continues without jumping to the end. Choosing another impulse immediately launches that variation. Under reduced motion, actions show a static result by default; pressing **Play** explicitly opts into animation for that scene until reset or switching scenes.
+Hover near a cube to see its illuminated outline and the available action. In the dynamics view, click to release, click during motion to pause, then click again to resume from the same position. **Enter** follows the same behavior. Dragging only changes the viewpoint. Use **Replay impulse** or choose another impulse to deliberately restart. **Play**, **Pause** and **Resume** provide equivalent playback controls outside the canvas. Under reduced motion, actions show a static result by default; pressing **Play** explicitly opts into animation for that scene until reset or switching scenes.
 
 ## Features
 
 - Four interactive studies with object selection, articulated motion, pointer inspection, touch and keyboard controls.
+- Viewport-filling desktop composition with fluid typography and scene sizing, plus a stacked mobile layout.
 - Clear separation between current work, future directions and published research foundations.
 - Searchable publications with year/type filters and BibTeX copying.
 - Complete homepage publication list, project pages and research timeline.

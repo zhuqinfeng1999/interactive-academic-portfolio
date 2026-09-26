@@ -1,6 +1,6 @@
 /* Spatialfolio 2 · Embodied edition. A large, grounded machine with room to breathe. */
 :root { --embodied-cyan:#a9ddea; --embodied-amber:#dfb38b; }
-.embodied-hero { display:block; min-height:960px; overflow:hidden; background:radial-gradient(ellipse at 75% 40%,#16253077,transparent 53%),#080d11; }
+.embodied-hero { display:block; min-height:100svh; overflow:hidden; background:radial-gradient(ellipse at 75% 40%,#16253077,transparent 53%),#080d11; }
 .embodied-hero::before,.embodied-hero::after { display:none; }
 .embodied-layout { position:relative; display:grid; grid-template-columns:minmax(0,.91fr) minmax(0,1.24fr); gap:28px; width:min(1480px,calc(100% - 112px)); margin:auto; padding:152px 0 74px; align-items:center; }
 .embodied-hero .hero-content { display:block; padding:0; min-height:0; width:auto; }
@@ -16,6 +16,8 @@
 .embodied-hero .opportunity p { font-size:10px; line-height:1.65; }
 .embodied-hero .opportunity p strong { font-size:11px; }
 .embodied-hero .opportunity > b { font-size:9px; }
+.embodied-hero .opportunity { align-content:start; }
+.placement-date { display:block; margin:3px 0 5px; color:#8babb9; font:8px/1.65 var(--mono); letter-spacing:.025em; }
 .embodied-world { position:relative; min-width:0; height:728px; isolation:isolate; }
 .embodied-stage { position:absolute; inset:-100px -80px 95px -54px; z-index:0; }
 .embodied-canvas { width:100%; height:100%; display:block; outline:none; cursor:crosshair; touch-action:pan-y; mask-image:linear-gradient(#000 0%,#000 87%,transparent 100%); }
@@ -121,7 +123,6 @@
 .embodied-explorer .embodied-note { padding-bottom:12px; }
 .edition-banner { padding:12px 24px; text-align:center; background:#21363e; color:#cce5ee; font:11px var(--mono); position:relative; z-index:10; }
 .edition-banner a { text-decoration:underline; }
-@media(min-width:1600px){.embodied-layout{padding-top:160px;gap:42px;}.embodied-world{height:760px;}.embodied-stage{inset:-55px -55px 118px;}}
 @media(max-width:1180px){.embodied-layout{width:calc(100% - 64px);grid-template-columns:.93fr 1fr;gap:20px;padding-top:140px;}.embodied-hero .hero-name{font-size:78px;}.embodied-hero .hero-role{font-size:35px;}.embodied-world{height:745px;}.embodied-modes button{font-size:8px;gap:4px;}.embodied-modes button i{display:none;}.embodied-caption h2{font-size:24px;}.direction-copy{padding:22px;}.direction-copy h3{font-size:30px;}}
 @media(max-width:860px){
   .embodied-hero{min-height:0;}.embodied-layout{grid-template-columns:1fr;width:calc(100% - 48px);gap:36px;padding:130px 0 44px;}.embodied-hero .hero-copy,.embodied-hero .availability{max-width:680px;}.embodied-hero .hero-name{font-size:90px;}.embodied-hero .hero-role{font-size:42px;max-width:600px;}.embodied-hero .hero-intro{max-width:640px;font-size:14px;}.embodied-hero .hero-intro + .hero-intro{font-size:12px;}.embodied-world{height:740px;}.embodied-stage{inset:8px -20px 130px;}.embodied-caption{left:0;top:5px;}.embodied-controls{left:0;}.embodied-modes button{font-size:10px;}.embodied-modes button i{display:inline;}.embodied-hero .availability{grid-template-columns:1.45fr 1fr;}.embodied-hero .opportunity p{font-size:11px;}.research-journey .section-heading{grid-template-columns:1fr;}.journey-grid{gap:12px;}.direction-card{min-height:405px;}.direction-copy{padding:18px;}.direction-copy h3{font-size:28px;}.direction-copy p{font-size:11px;}.foundation-strip{grid-template-columns:1fr;gap:20px;}.foundation-intro p{max-width:640px;}.domain-list .domain-entry.foundation{grid-column:span 6;}.atlas-stage{grid-template-columns:1fr;padding:25px;}.atlas-stage .atlas-context{border-left:0;border-top:1px solid #a9ddea26;padding:24px 0 0;min-height:0;}.embodied-explorer-layout{grid-template-columns:1fr;width:calc(100% - 48px);gap:32px;}.embodied-explorer-copy h1{font-size:68px;}.embodied-explorer-copy > p{max-width:620px;}.embodied-explorer .embodied-world{height:760px;min-height:0;}.embodied-explorer .explorer-topbar{padding:25px;}.embodied-explorer .explorer-identity{display:none;}.embodied-explorer .explorer-template-credit{top:18px;right:24px;}
@@ -177,3 +178,67 @@
   .terminal-command{font-size:10px;gap:7px;margin:10px 0;}.terminal-trace{font-size:7px;gap:12px;}.terminal-result{font-size:8px;}.terminal-header{font-size:9px;}.embodied-undo{max-width:92px;line-height:1.5;}.embodied-action{font-size:9px;padding:8px;}.embodied-utility{gap:0;}.embodied-utility button{font-size:8px;padding:8px 5px;}
 }
 @media(prefers-reduced-motion:reduce){.terminal-caret{animation:none;}}
+
+/* Fill the desktop viewport as a composition, not a fixed-width inset panel.
+   Width and height both inform the type scale; short laptops may scroll rather
+   than clip content. Mobile and the standalone Explorer retain their layouts. */
+@media(min-width:861px){
+  .embodied-layout {
+    --hero-top:clamp(118px,11.5svh,176px);
+    --hero-bottom:clamp(32px,4.5svh,70px);
+    width:calc(100% - clamp(64px,8vw,260px));
+    min-height:100svh;
+    grid-template-columns:minmax(0,.94fr) minmax(0,1.26fr);
+    gap:clamp(24px,3vw,88px);
+    padding:var(--hero-top) 0 var(--hero-bottom);
+  }
+  .embodied-hero .hero-copy,.embodied-hero .availability { max-width:none; }
+  .embodied-hero .hero-name { font-size:clamp(46px,min(3.5vw,5.6svh),88px); }
+  .embodied-hero .hero-name small { margin-top:16px;font-size:clamp(11px,.8vw,16px); }
+  .embodied-hero .hero-role { max-width:none;font-size:clamp(64px,min(5.5vw,9svh),138px);margin:24px 0 22px; }
+  .embodied-hero .hero-intro { max-width:59ch;font-size:clamp(13px,min(.88vw,1.5svh),20px);line-height:1.75; }
+  .embodied-hero .hero-intro + .hero-intro { margin-top:12px;font-size:clamp(12px,min(.8vw,1.35svh),18px); }
+  .embodied-hero .hero-actions { margin-top:22px;gap:10px; }
+  .embodied-hero .hero-actions .button { font-size:clamp(9px,.61vw,14px);padding:14px clamp(14px,1.1vw,28px); }
+  .embodied-hero .hero-socials { margin-top:18px;gap:clamp(16px,1.5vw,36px); }
+  .embodied-hero .hero-socials a { font-size:clamp(10px,.68vw,15px); }
+  .embodied-hero .availability { margin-top:24px;gap:clamp(22px,2vw,48px);grid-template-columns:1.5fr 1fr; }
+  .embodied-hero .opportunity p { font-size:clamp(10px,.69vw,16px); }
+  .embodied-hero .opportunity p strong { font-size:clamp(11px,.76vw,18px); }
+  .embodied-hero .opportunity > b { font-size:clamp(10px,.64vw,15px); }
+  .embodied-hero .placement-date { font-size:clamp(8px,.59vw,13px); }
+  .embodied-hero .embodied-world { height:max(600px,calc(100svh - var(--hero-top) - var(--hero-bottom))); }
+  .embodied-hero .embodied-stage { inset:-40px -3vw 156px -2vw; }
+  .embodied-hero .embodied-caption { top:0;left:8px;max-width:80%; }
+  .embodied-hero .embodied-caption h2 { font-size:clamp(27px,2vw,46px); }
+  .embodied-hero .scene-kicker { font-size:clamp(9px,.64vw,14px); }
+  .embodied-hero .embodied-world[data-mode=vla] .embodied-stage { top:-25px;bottom:355px; }
+  .embodied-hero .embodied-world[data-mode=wam] .embodied-stage { top:-25px;bottom:215px; }
+}
+@media(min-width:1600px){
+  .embodied-hero .embodied-modes button { font-size:clamp(11px,.69vw,16px);min-height:clamp(48px,3vw,68px); }
+  .embodied-hero .embodied-modes button i { font-size:clamp(8px,.49vw,11px); }
+  .embodied-hero .embodied-action,.embodied-hero .embodied-undo { font-size:clamp(10px,.64vw,15px); }
+  .embodied-hero .embodied-utility button,.embodied-hero .embodied-status { font-size:clamp(9px,.61vw,14px); }
+  .embodied-hero .embodied-note { font-size:clamp(8px,.51vw,12px); }
+  .embodied-hero .embodied-stage { bottom:185px; }
+  .embodied-hero .embodied-world[data-mode=wam] .embodied-stage { bottom:245px; }
+  .embodied-hero .embodied-world[data-mode=vla] .embodied-stage { bottom:385px; }
+}
+@media(min-width:861px) and (max-width:1599px){
+  .embodied-hero .hero-intro { max-width:100%; }
+}
+@media(min-width:861px) and (max-height:825px){
+  .embodied-layout { --hero-top:106px;--hero-bottom:24px; }
+  .embodied-hero .hero-copy > .eyebrow { margin-bottom:18px; }
+  .embodied-hero .hero-name { font-size:42px; }
+  .embodied-hero .hero-name small { margin-top:12px; }
+  .embodied-hero .hero-role { font-size:clamp(58px,4.3vw,68px);margin:18px 0; }
+  .embodied-hero .hero-intro { line-height:1.65; }
+  .embodied-hero .hero-intro + .hero-intro { margin-top:10px; }
+  .embodied-hero .hero-actions { margin-top:18px; }
+  .embodied-hero .hero-actions .button { padding-top:11px;padding-bottom:11px; }
+  .embodied-hero .hero-socials { margin-top:14px; }
+  .embodied-hero .availability { margin-top:18px;padding-top:14px; }
+  .embodied-hero .opportunity p { line-height:1.5; }
+}

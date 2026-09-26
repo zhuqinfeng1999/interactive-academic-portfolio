@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.1 — Full-screen composition & predictable playback · 2026-09-26
+
+- Replace the fixed desktop hero cap with viewport-filling layout, fluid type and proportional scene sizing; preserve the mobile and Explorer layouts.
+- Make dynamics scene clicks and Enter pause/resume an active rollout without resetting its clock, pose or chosen impulse. Keep deliberate replay and impulse controls separate.
+- Restore year-level opportunity headings; associate placement dates with the institution, not the overall internship category.
+- Refresh bilingual documentation and screenshots.
+
 ## 2.0.0 — Embodied edition · 2026-09-26
 
 - Ship four distinct studies: articulated stacking, dexterous manipulation, a preset VLA terminal and idealized physical prediction.
