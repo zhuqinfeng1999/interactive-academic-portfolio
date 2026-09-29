@@ -1,6 +1,6 @@
 # Choosing an edition / 版本选择
 
-## Embodied · 2.0.1
+## Embodied · 2.0.2
 
 For embodied AI and robotics researchers. The default homepage and Explorer share
 `assets/js/robot-stage.js`; the four modes are `arm`, `hand`, `vla` and `wam`.

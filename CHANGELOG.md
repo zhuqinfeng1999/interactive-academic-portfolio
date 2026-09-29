@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.2 — World dynamics entry autoplay · 2026-09-30
+
+- Automatically start one dynamics rollout when entering scene 04 on the homepage or Explorer, including direct scene links.
+- Preserve click-to-pause/resume, deliberate replay, and an idle Reset state; do not auto-loop.
+- Respect reduced-motion preferences and suspend animation while offscreen or hidden.
+
 ## 2.0.1 — Full-screen composition & predictable playback · 2026-09-26
 
 - Replace the fixed desktop hero cap with viewport-filling layout, fluid type and proportional scene sizing; preserve the mobile and Explorer layouts.

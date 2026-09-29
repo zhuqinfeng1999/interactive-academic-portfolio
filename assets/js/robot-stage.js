@@ -190,6 +190,9 @@ class RobotStage{
     if(!this.ready)return;
     this.container.classList.remove('is-fallback');this.container.classList.add('is-ready');
     this.arm.root.visible=mode==='arm';this.table.visible=mode==='arm';if(this.hand)this.hand.root.visible=mode==='hand';this.rover.root.visible=mode==='vla';this.dynamics.root.visible=mode==='wam';this.reset();
+    // Entering the dynamics view starts one rollout; Reset remains a quiet reset.
+    // Keep reduced-motion users in control through the explicit Play button.
+    if(mode==='wam'&&!media.matches)this.activate();
     if(mode==='hand'&&!this.hand){this.status('Loading the dexterous hand study…');await this.handPromise;if(this.mode!=='hand')return;if(!this.hand&&this.handPromise){this.container.classList.remove('is-ready');this.container.classList.add('is-fallback');this.status('Static hand study · refresh to retry interactive loading.');return;}this.status(info.hint);this.sync();this.request();}
   }
   reset(){

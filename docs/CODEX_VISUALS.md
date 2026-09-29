@@ -39,6 +39,8 @@ current pose, and Resume continues it. Do not treat a manual pause as a request
 for a static result. Only reduced-motion defaults do that; explicit Play can opt
 into animation until reset or mode change.
 
+Entering the dynamics scene automatically starts one rollout unless reduced
+motion is enabled. Reset stays idle; completed rollouts do not auto-loop.
 In the dynamics scene, click or Enter starts an idle rollout, pauses a moving
 one and resumes a frozen one without changing the impulse or clock. A drag
 must not toggle playback. Only an explicit replay or impulse selection starts
