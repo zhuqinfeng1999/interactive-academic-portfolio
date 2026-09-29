@@ -13,7 +13,7 @@
 
 [Customization](docs/CUSTOMIZE.md) · [Design with Codex](docs/CODEX_VISUALS.md) · [Edition guide](docs/EDITIONS.md) · [中文说明](README.zh-CN.md)
 
-> **2.0.2 · Embodied edition.** All sample names, institutions, placement dates and publications in this template are fictional. Replace them with your own verified information before publishing.
+> **2.0.3 · Embodied edition.** All sample names, institutions, placement dates and publications in this template are fictional. Replace them with your own verified information before publishing.
 
 ## Choose your research edition
 
@@ -77,6 +77,7 @@ Open `http://127.0.0.1:4173/`. No package installation is required. The template
 | Rover, preset navigation and idealized dynamics | `assets/js/robot-studies.js` |
 | Model geometry and joint-limited motion | `assets/models/` |
 | Embodied layout | `assets/css/embodied.css` |
+| Homepage editorial polish (type, cards and service layout) | `assets/css/editorial.css` |
 | Base design and publication treatments | `assets/css/cosmic.css`, `subpages.css`, `refinement.css` |
 | Previous Perception renderer | `assets/js/spatial-cloud.js`, `spatial-world.js` |
 

@@ -13,7 +13,7 @@
 
 [定制指南](docs/CUSTOMIZE.zh-CN.md) · [用 Codex 设计动效](docs/CODEX_VISUALS.zh-CN.md) · [版本选择](docs/EDITIONS.md)
 
-> **2.0.2 · Embodied 具身智能版。** 模板中的姓名、单位、实习起止时间与论文均为虚构示例，发布前请替换为自己的真实信息。
+> **2.0.3 · Embodied 具身智能版。** 模板中的姓名、单位、实习起止时间与论文均为虚构示例，发布前请替换为自己的真实信息。
 
 ## 选择适合你研究方向的版本
 
@@ -78,6 +78,7 @@ npm run validate
 | 移动机器人、预设导航与理想化动力学 | `assets/js/robot-studies.js` |
 | 机器人几何与关节运动 | `assets/models/` |
 | 具身智能版排版 | `assets/css/embodied.css` |
+| 首页视觉细化（字号、卡片与学术服务排版） | `assets/css/editorial.css` |
 | 基础设计与论文视觉处理 | `cosmic.css`、`subpages.css`、`refinement.css` |
 | 旧版感知场景 | `spatial-cloud.js`、`spatial-world.js` |
 

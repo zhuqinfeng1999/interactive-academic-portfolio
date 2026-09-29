@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.3 — Editorial refinement · 2026-09-30
+
+- Refine homepage type, control contrast and placement-date hierarchy while retaining the full-viewport interactive hero.
+- Give research-direction silhouettes a contained gallery composition with aligned copy and visible link affordances.
+- Preserve integrated publication imagery, softly improve figure exposure and scientific colour fidelity, and keep the complete record visible.
+- Replace nested service panels with an open editorial layout and unify dataset accents.
+- Scope the new `editorial.css` layer to the homepage; leave Explorer, dataset pages and the archived Perception edition unchanged.
+
+中文：调整首页字号、研究方向卡片构图、论文配图融合与学术服务排版，并更新中英文说明共用的真实截图；保留四个交互场景、完整论文列表、署名与许可，不改变独立子页面及旧版模板。
+
 ## 2.0.2 — World dynamics entry autoplay · 2026-09-30
 
 - Automatically start one dynamics rollout when entering scene 04 on the homepage or Explorer, including direct scene links.
